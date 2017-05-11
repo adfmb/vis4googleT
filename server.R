@@ -16,7 +16,7 @@ shinyServer(function(input, output) {
   tbl_completa00<-reactive({
     
     # path<-"http://backend:8080/todo/api/v1.0/tasks"
-    path<-"http://backend:8080/"
+    path<-"http://backend:5000/busquedas"
     # x<-GET(flask_port(),path=path)
     x<-GET(path)
     fromJSON(x$url)
