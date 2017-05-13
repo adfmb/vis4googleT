@@ -1,54 +1,128 @@
+
+
 library(shiny)
+library(shinydashboard)
 
-# Define UI for random distribution application 
-shinyUI(fluidPage(theme = "background.css",
-  
-  # # Application title
-  # titlePanel("Shiny + Flask + Postgresql"),
-  # 
-  # mainPanel(tableOutput("tbl_completa"),
-  #             tableOutput("renglon_i"))
-  
-  
-  tags$head(tags$style(HTML("
-    .shiny-text-output {
-                            background-color:#fff;
-                            }
-                            "))),
-  
-  #strong("Autómata: Cálculo de probabilidades de que cierto estado del proceso suceda")
-  h1("Go Google Yourself",#,span("Cálculo de probabilidades de que un insaculado llegue a cierto estado del proceso en la primera y segunda etapa", style = "font-weight: 300"), 
-     style = "font-family: 'Source Sans Pro';
-     color: #fff; text-align: center;
-     background-image: url('texturebg.png');
-     padding: 20px"),
-  
-  br(),
-  fluidRow( class= "R1",
-            tabsetPanel(type= "pills",
-                        
-                    ####################################
-                    ############ PANEL 1 ###############
-                    ####################################
-                    tabPanel("INPUT",
-  
-                        fluidRow(
-                          # column(8, offset = 3,
-                          #        img(src="logo-map-maker.png", height = 300, width = 550)
-                          # )
-                        ),
-
-                        br()
-                    ),
-                    
-                    ####################################
-                    ############ PANEL 2 ###############
-                    ####################################
-                    tabPanel("output_at_some_point",
-                             div(style = "height:800px; background-color: yellow;", "This is an example")))
-  )
-  
-  )
-)
-
+dashboardPage(title = "Go and Google Yourself!",
+              skin = ("blue"),
+              dashboardHeader(title = "Go & Google yourself",
+                              
+                              # Email Sharing link
+                              tags$li(class = "dropdown",
+                                      tags$a(href = "mailto:?Subject=Go Google Yourself&Body=Visualize the life you've build on Google's world... and let us suggest you one thing or two... ",
+                                             tags$img(height = "18px", 
+                                                      src = "images/email.png")
+                                      )
+                              ),
+                              
+                              # Twitter Sharing Link
+                              tags$li(class = "dropdown",
+                                      tags$a(href = "http://twitter.com/share?text=Go Google Yourself&Body=Visualize the life you've build on Google's world... and let us suggest you one thing or two... http://https://www.facebook.com/Go-google-yourself-1991980714370104/?ref=br_rs", 
+                                             target = "_blank", 
+                                             tags$img(height = "18px", 
+                                                      src = "images/twitter.png")
+                                      )
+                              ),
+                              
+                              # Facebook Sharing link
+                              tags$li(class = "dropdown",
+                                      tags$a(href = "http://www.facebook.com/sharer.php?u=https://www.facebook.com/Go-google-yourself-1991980714370104/?ref=br_rs", 
+                                             target = "_blank", 
+                                             tags$img(height = "18px", 
+                                                      src = "images/facebook.png")
+                                      )
+                              ),
+                              
+                              # LinkedIn Sharing link
+                              tags$li(class = "dropdown",
+                                      tags$a(href = "http://www.linkedin.com/shareArticle?mini=true&url=https://www.facebook.com/Go-google-yourself-1991980714370104/?ref=br_rs", 
+                                             target = "_blank", 
+                                             tags$img(height = "18px", 
+                                                      src = "images/linkedin.png")
+                                      )
+                              )
+              ),
+              
+              dashboardSidebar(
+                sidebarMenu(
+                  menuItem("Introduction", tabName = "intro", icon = icon("home")),
+                  menuItem("Data", tabName = "datafile", icon = icon("table")),
+                  menuItem("Analysis", tabName = "analysis", icon = icon("binoculars")),
+                  menuItem("Paper", tabName = "paper", icon = icon("file-pdf-o")),
+                  menuItem("Presentation", tabName = "present", icon = icon("microphone")),
+                  menuItem("About", tabName = "about", icon = icon("info")),
+                  hr(),
+                  sidebarUserPanel(name = a("Alfredo M", target = "_blank_",
+                                            href = "https://github.com/adfmb"), 
+                                   subtitle = "Data Scientist",
+                                   image = "images/adf.png"),
+                  sidebarUserPanel(name = a("Pedro H", target = "_blank_",
+                                            href = "https://github.com/pedrohserrano"), 
+                                   subtitle = "Data Scientist",
+                                   image = "images/pit.png"),
+                  sidebarUserPanel(name = a("Eduardo H", target = "_blank_",
+                                            href = "https://github.com/adfmb"), 
+                                   subtitle = "Computer Scientist",
+                                   image = "images/lal.png"),
+                  sidebarUserPanel(name = a("Alain C", target = "_blank_",
+                                            href = "https://github.com/adfmb"), 
+                                   subtitle = "Data Scientist",
+                                   image = "images/ala.png"),
+                  hr(),
+                  menuItem("Source code", icon = icon("file-code-o"), 
+                           href = "https://github.com/adfmb/vis4googleT"),
+                  menuItem("Bug Reports", icon = icon("bug"),
+                           href = "https://github.com/adfmb/vis4googleT/issues")
+                )
+              ),
+              
+              dashboardBody(
+                # tags$head(includeScript("www/js/google-analytics.js"),
+                #           HTML('<link rel="apple-touch-icon" sizes="57x57" href="icons/apple-icon-57x57.png">
+                #                <link rel="apple-touch-icon" sizes="60x60" href="icons/apple-icon-60x60.png">
+                #                <link rel="apple-touch-icon" sizes="72x72" href="icons/apple-icon-72x72.png">
+                #                <link rel="apple-touch-icon" sizes="76x76" href="icons/apple-icon-76x76.png">
+                #                <link rel="apple-touch-icon" sizes="114x114" href="icons/apple-icon-114x114.png">
+                #                <link rel="apple-touch-icon" sizes="120x120" href="icons/apple-icon-120x120.png">
+                #                <link rel="apple-touch-icon" sizes="144x144" href="icons/apple-icon-144x144.png">
+                #                <link rel="apple-touch-icon" sizes="152x152" href="icons/apple-icon-152x152.png">
+                #                <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-icon-180x180.png">
+                #                <link rel="icon" type="image/png" sizes="192x192"  href="icons/android-icon-192x192.png">
+                #                <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32x32.png">
+                #                <link rel="icon" type="image/png" sizes="96x96" href="icons/favicon-96x96.png">
+                #                <link rel="icon" type="image/png" sizes="16x16" href="icons/favicon-16x16.png">
+                #                <link rel="manifest" href="icons/manifest.json">
+                #                <meta name="msapplication-TileColor" content="#ffffff">
+                #                <meta name="msapplication-TileImage" content="icons/ms-icon-144x144.png">
+                #                <meta name="theme-color" content="#ffffff">')),
+                tabItems(
+                  # Introduction Tab
+                  tabItem(tabName = "intro", 
+                          div(style = "height:800px; width:100%", includeHTML("cosa.html"))),
+                  
+                  # # Data Tab
+                  # tabItem(tabName = "datafile",
+                  #         style = "overflow-y:scroll;",
+                  #         box(width = 12, 
+                  #             title = "Response Times 1999-2014 - Select a column for Validation", 
+                  #             DT::dataTableOutput("dtrt")
+                  #         ),
+                  #         box(width = 4, DT::dataTableOutput("dtrtval")),
+                  #         box(width = 8, plotOutput("plotrtval", height = "300px"))
+                  # ),
+                  # 
+                  # Analysis Tab
+                  tabItem(tabName = "datafile",
+                          style = "overflow-y:scroll;",
+                          box(width = 15, height = "400px", title = "User Inputs",
+                              #HTML("Upload your .zip file with your Google's locations, serches and mails"),
+                              fileInput('file1', "Choose your .zip file with your Google's locations, serches and mails",
+                                        accept = c(
+                                          '.zip'
+                                        )
+                              ))
+                  )
+                  )
+                  )
+                  )
 
