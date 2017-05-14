@@ -1,7 +1,7 @@
 import os
 import json
 import subprocess
-import psycopg2
+#import psycopg2
 import codecs
 import glob
 

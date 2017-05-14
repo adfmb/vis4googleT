@@ -1,6 +1,5 @@
 library(shiny)
 library(shinydashboard)
-library(DT)
 options(shiny.maxRequestSize=500*1024^2) 
 
 
@@ -8,19 +7,41 @@ options(shiny.maxRequestSize=500*1024^2)
 # Define server logic required to draw a histogram
 shinyServer(function(input, output, session) {
   
-  output$contents <- renderTable({
-    # input$file1 will be NULL initially. After the user selects
-    # and uploads a file, it will be a data frame with 'name',
-    # 'size', 'type', and 'datapath' columns. The 'datapath'
-    # column will contain the local filenames where the data can
-    # be found.
-    inFile <- input$file1
-    
-    if (is.null(inFile))
-      return(NULL)
-    
-    
+  # pathfile <- reactive({
+  #       input$file1
+  # })
+  # 
+  # output$path <- renderPrint({
+  #   # input$file1 will be NULL initially. After the user selects
+  #   # and uploads a file, it will be a data frame with 'name',
+  #   # 'size', 'type', and 'datapath' columns. The 'datapath'
+  #   # column will contain the local filenames where the data can
+  #   # be found.
+  #   
+  #   if (is.null(pathfile()))
+  #     return(NULL)
+  #   # system(paste("mv ",temp, "/tmp/file.zip"))
+  #   pathfile()$datapath
+  #   # system("tasks/unzip_mv.sh")
+  # })
+  
+  # temp_reactive<-reactive({
+  #   
+  #   tempfile()
+  #   
+  # })
+  
+  
+  mvzip<-eventReactive(input$file1,{
+    system(paste("mv ",print(input$file1$datapath)," /tmp/todo_googlet.zip",sep=""))
+    system("./tasks/unzip_mv.sh")
+    system("python tasks/agrupar_busquedas.py")
+    system("python tasks/ups/up_todos_mails.py")
+    system("python tasks/ups/up_todas_ubicaciones.py")
+    system("python tasks/ups/up_todas_busquedas.py")
   })
+  
+  observe({ mvzip() })
   
   
   # getPage<-function() {
