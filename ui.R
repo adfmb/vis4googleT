@@ -1,5 +1,3 @@
-
-
 library(shiny)
 library(shinydashboard)
 
@@ -61,11 +59,11 @@ dashboardPage(title = "Go and Google Yourself!",
                                    subtitle = "Data Scientist",
                                    image = "images/pit.png"),
                   sidebarUserPanel(name = a("Eduardo H", target = "_blank_",
-                                            href = "https://github.com/adfmb"), 
+                                            href = "https://github.com/eduardomtz"), 
                                    subtitle = "Computer Scientist",
                                    image = "images/lal.png"),
                   sidebarUserPanel(name = a("Alain C", target = "_blank_",
-                                            href = "https://github.com/adfmb"), 
+                                            href = "https://github.com/acabrerag"), 
                                    subtitle = "Data Scientist",
                                    image = "images/ala.png"),
                   hr(),
@@ -77,50 +75,51 @@ dashboardPage(title = "Go and Google Yourself!",
               ),
               
               dashboardBody(
-                # tags$head(includeScript("www/js/google-analytics.js"),
-                #           HTML('<link rel="apple-touch-icon" sizes="57x57" href="icons/apple-icon-57x57.png">
-                #                <link rel="apple-touch-icon" sizes="60x60" href="icons/apple-icon-60x60.png">
-                #                <link rel="apple-touch-icon" sizes="72x72" href="icons/apple-icon-72x72.png">
-                #                <link rel="apple-touch-icon" sizes="76x76" href="icons/apple-icon-76x76.png">
-                #                <link rel="apple-touch-icon" sizes="114x114" href="icons/apple-icon-114x114.png">
-                #                <link rel="apple-touch-icon" sizes="120x120" href="icons/apple-icon-120x120.png">
-                #                <link rel="apple-touch-icon" sizes="144x144" href="icons/apple-icon-144x144.png">
-                #                <link rel="apple-touch-icon" sizes="152x152" href="icons/apple-icon-152x152.png">
-                #                <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-icon-180x180.png">
-                #                <link rel="icon" type="image/png" sizes="192x192"  href="icons/android-icon-192x192.png">
-                #                <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32x32.png">
-                #                <link rel="icon" type="image/png" sizes="96x96" href="icons/favicon-96x96.png">
-                #                <link rel="icon" type="image/png" sizes="16x16" href="icons/favicon-16x16.png">
-                #                <link rel="manifest" href="icons/manifest.json">
-                #                <meta name="msapplication-TileColor" content="#ffffff">
-                #                <meta name="msapplication-TileImage" content="icons/ms-icon-144x144.png">
-                #                <meta name="theme-color" content="#ffffff">')),
+                tags$head(includeScript("www/js/google-analytics.js"),
+                          HTML('<link rel="apple-touch-icon" sizes="57x57" href="icons/apple-icon-57x57.png">
+                               <link rel="apple-touch-icon" sizes="60x60" href="icons/apple-icon-60x60.png">
+                               <link rel="apple-touch-icon" sizes="72x72" href="icons/apple-icon-72x72.png">
+                               <link rel="apple-touch-icon" sizes="76x76" href="icons/apple-icon-76x76.png">
+                               <link rel="apple-touch-icon" sizes="114x114" href="icons/apple-icon-114x114.png">
+                               <link rel="apple-touch-icon" sizes="120x120" href="icons/apple-icon-120x120.png">
+                               <link rel="apple-touch-icon" sizes="144x144" href="icons/apple-icon-144x144.png">
+                               <link rel="apple-touch-icon" sizes="152x152" href="icons/apple-icon-152x152.png">
+                               <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-icon-180x180.png">
+                               <link rel="icon" type="image/png" sizes="192x192"  href="icons/android-icon-192x192.png">
+                               <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32x32.png">
+                               <link rel="icon" type="image/png" sizes="96x96" href="icons/favicon-96x96.png">
+                               <link rel="icon" type="image/png" sizes="16x16" href="icons/favicon-16x16.png">
+                               <link rel="manifest" href="icons/manifest.json">
+                               <meta name="msapplication-TileColor" content="#ffffff">
+                               <meta name="msapplication-TileImage" content="icons/ms-icon-144x144.png">
+                               <meta name="theme-color" content="#ffffff">')),
                 tabItems(
                   # Introduction Tab
                   tabItem(tabName = "intro", 
                           div(style = "height:800px; width:100%", includeHTML("cosa.html"))),
                   
-                  # # Data Tab
-                  # tabItem(tabName = "datafile",
-                  #         style = "overflow-y:scroll;",
-                  #         box(width = 12, 
-                  #             title = "Response Times 1999-2014 - Select a column for Validation", 
-                  #             DT::dataTableOutput("dtrt")
-                  #         ),
-                  #         box(width = 4, DT::dataTableOutput("dtrtval")),
-                  #         box(width = 8, plotOutput("plotrtval", height = "300px"))
-                  # ),
-                  # 
-                  # Analysis Tab
                   tabItem(tabName = "datafile",
                           style = "overflow-y:scroll;",
                           box(width = 15, height = "400px", title = "User Inputs",
-                              #HTML("Upload your .zip file with your Google's locations, serches and mails"),
                               fileInput('file1', "Choose your .zip file with your Google's locations, serches and mails",
                                         accept = c(
                                           '.zip'
                                         )
-                              ))
+                              )),
+                          box(width = 15, height = "400px", title = "Process",
+                              infoBox("Tasks", 8, icon = icon("street-view"), fill = TRUE),
+                              infoBoxOutput("progressBox2")#,
+                              # infoBoxOutput("approvalBox2")
+                          )
+                  # ),
+                  # 
+                  # tabItem(tabName = "datafile",
+                  #          style = "overflow-y:scroll;",
+                  #          box(width = 15, height = "400px", title = "User Inputs",
+                  #   infoBox("New Orders", 10 * 2, icon = icon("credit-card"), fill = TRUE),
+                  #   infoBoxOutput("progressBox2"),
+                  #   infoBoxOutput("approvalBox2")
+                  #          )
                   )
 
                   )

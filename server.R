@@ -1,3 +1,4 @@
+# require(shiny)
 library(shiny)
 library(shinydashboard)
 options(shiny.maxRequestSize=500*1024^2) 
@@ -6,30 +7,6 @@ options(shiny.maxRequestSize=500*1024^2)
 
 # Define server logic required to draw a histogram
 shinyServer(function(input, output, session) {
-  
-  # pathfile <- reactive({
-  #       input$file1
-  # })
-  # 
-  # output$path <- renderPrint({
-  #   # input$file1 will be NULL initially. After the user selects
-  #   # and uploads a file, it will be a data frame with 'name',
-  #   # 'size', 'type', and 'datapath' columns. The 'datapath'
-  #   # column will contain the local filenames where the data can
-  #   # be found.
-  #   
-  #   if (is.null(pathfile()))
-  #     return(NULL)
-  #   # system(paste("mv ",temp, "/tmp/file.zip"))
-  #   pathfile()$datapath
-  #   # system("tasks/unzip_mv.sh")
-  # })
-  
-  # temp_reactive<-reactive({
-  #   
-  #   tempfile()
-  #   
-  # })
   
   
   mvzip<-eventReactive(input$file1,{
@@ -43,175 +20,241 @@ shinyServer(function(input, output, session) {
   
   observe({ mvzip() })
   
+  autoInvalidate <- reactiveTimer(2000)
+
+  x1<-0
+  progress1 <- reactive({
+    print(paste("antes de empezar x1 vale: ",x1,sep=""))
+    autoInvalidate()
+    if(x1==0){
+      
+      y<-indicador_unzip(x1)
+      x1<<-y
+      print(paste("Dentro del if, x1 vale: ",x1,sep=""))
+      print(x1)
+      
+    }else{
+      print(paste("Sin leer el archivo, x1 vale: ",x1,sep=""))
+      print(x1)
+    }
+  })
   
-  # getPage<-function() {
-  #   return(includeHTML("intro.html"))
-  # }
-  # output$inc<-renderUI({getPage()})
+  x2<-0
+  progress2 <- reactive({
+    print(paste("antes de empezar x2 vale: ",x2,sep=""))
+    autoInvalidate()
+    if(x2==0){
+      
+      y<-indicador_agruparbusquedas(x2)
+      x2<<-y
+      print(paste("Dentro del if, x2 vale: ",x2,sep=""))
+      print(x2)
+      
+    }else{
+      print(paste("Sin leer el archivo, x2 vale: ",x2,sep=""))
+      print(x2)
+    }
+  })
   
-  # output$dtrt <- DT::renderDataTable(response.times, 
-  #                                    rownames = FALSE, server = FALSE,
-  #                                    options = list(pageLength = 5, dom = 'tp'),
-  #                                    selection = list(mode = "single", target = "column",
-  #                                                     selected = 4)
-  # )
-  # 
-  # output$dtrtval <- DT::renderDataTable(
-  #   dtrtvalfun(input$dtrt_columns_selected), 
-  #   rownames = FALSE, options = list(dom = "t")
-  # )
-  # 
-  # output$plotrtval <- renderPlot({
-  #   if (!is.null(input$dtrt_columns_selected)) {
-  #     data.col <- input$dtrt_columns_selected + 1
-  #     var.name <- names(response.times)[data.col]
-  #     var.class <- class(response.times[[data.col]])
-  #     
-  #     switch(var.class, 
-  #            character = {
-  #              # Graphical Barchart of the character data
-  #              barplot(table(response.times[,var.name]),
-  #                      main = paste0("Barchart of ", var.name),
-  #                      xlab = var.name, las = 1)
-  #            },
-  #            numeric = {
-  #              # Graphical Histogram of the numerical data 
-  #              hist(response.times[which(response.times[,var.name] >= 0),var.name], 
-  #                   main = paste0("Histogram of ", var.name),
-  #                   xlab = var.name, las = 1)
-  #            },
-  #            integer = {
-  #              # Graphical Barchart of the integer data
-  #              barplot(table(response.times[,var.name]), 
-  #                      main = paste0("Barchart of ", var.name),
-  #                      xlab = var.name, las = 1)
-  #            }
-  #     )
-  #   }
+  x3<-0
+  progress3 <- reactive({
+    print(paste("antes de empezar x3 vale: ",x3,sep=""))
+    autoInvalidate()
+    if(x3==0){
+      
+      y<-indicador_uptodasbusquedas(x3)
+      x3<<-y
+      print(paste("Dentro del if, x3 vale: ",x3,sep=""))
+      print(x3)
+      
+    }else{
+      print(paste("Sin leer el archivo, x3 vale: ",x3,sep=""))
+      print(x3)
+    }
+  })
+  
+  x4<-0
+  progress4 <- reactive({
+    print(paste("antes de empezar x4 vale: ",x4,sep=""))
+    autoInvalidate()
+    if(x4==0){
+      
+      y<-indicador_uptodasubicaciones(x4)
+      x4<<-y
+      print(paste("Dentro del if, x4 vale: ",x4,sep=""))
+      print(x4)
+      
+    }else{
+      print(paste("Sin leer el archivo, x4 vale: ",x4,sep=""))
+      print(x4)
+    }
+  })
+  
+  x5<-0
+  progress5 <- reactive({
+    print(paste("antes de empezar x5 vale: ",x5,sep=""))
+    autoInvalidate()
+    if(x5==0){
+      
+      y<-indicador_uptodosmails(x5)
+      x5<<-y
+      print(paste("Dentro del if, x5 vale: ",x5,sep=""))
+      print(x5)
+      
+    }else{
+      print(paste("Sin leer el archivo, x1 vale: ",x1,sep=""))
+      print(x1)
+    }
+  })
+  
+  x6<-0
+  progress6 <- reactive({
+    print(paste("antes de empezar x6 vale: ",x6,sep=""))
+    autoInvalidate()
+    if(x6==0){
+      
+      y<-indicador_preprocbusquedas_fin(x6)
+      x6<<-y
+      print(paste("Dentro del if, x6 vale: ",x6,sep=""))
+      print(x6)
+      
+    }else{
+      print(paste("Sin leer el archivo, x6 vale: ",x6,sep=""))
+      print(x6)
+    }
+  })
+  
+  x7<-0
+  progress7 <- reactive({
+    print(paste("antes de empezar x7 vale: ",x7,sep=""))
+    autoInvalidate()
+    if(x7==0){
+      
+      y<-indicador_preprocubicaciones_fin(x7)
+      x7<<-y
+      print(paste("Dentro del if, x7 vale: ",x7,sep=""))
+      print(x7)
+      
+    }else{
+      print(paste("Sin leer el archivo, x7 vale: ",x7,sep=""))
+      print(x7)
+    }
+  })
+  
+  x8<-0
+  progress8 <- reactive({
+    print(paste("antes de empezar x8 vale: ",x8,sep=""))
+    autoInvalidate()
+    if(x8==0){
+      
+      y<-indicador_preprocmails_fin(x8)
+      x8<<-y
+      print(paste("Dentro del if, x8 vale: ",x8,sep=""))
+      print(x8)
+      
+    }else{
+      print(paste("Sin leer el archivo, x8 vale: ",x8,sep=""))
+      print(x8)
+    }
+  })
+  
+  x9<-0
+  progress9 <- reactive({
+    print(paste("antes de empezar x9 vale: ",x9,sep=""))
+    autoInvalidate()
+    if(x9==0){
+      
+      y<-indicador_analisisbusquedas_fin(x9)
+      x9<<-y
+      print(paste("Dentro del if, x9 vale: ",x9,sep=""))
+      print(x9)
+      
+    }else{
+      print(paste("Sin leer el archivo, x9 vale: ",x9,sep=""))
+      print(x9)
+    }
+  })
+  
+  x10<-0
+  progress10 <- reactive({
+    print(paste("antes de empezar x10 vale: ",x10,sep=""))
+    autoInvalidate()
+    if(x10==0){
+      
+      y<-indicador_analisisubicaciones_fin(x10)
+      x10<<-y
+      print(paste("Dentro del if, x10 vale: ",x10,sep=""))
+      print(x10)
+      
+    }else{
+      print(paste("Sin leer el archivo, x10 vale: ",x10,sep=""))
+      print(x10)
+    }
+  })
+  
+  x11<-0
+  progress11 <- reactive({
+    print(paste("antes de empezar x11 vale: ",x11,sep=""))
+    autoInvalidate()
+    if(x11==0){
+      
+      y<-indicador_agruparbusquedas(x11)
+      x11<<-y
+      print(paste("Dentro del if, x11 vale: ",x11,sep=""))
+      print(x11)
+      
+    }else{
+      print(paste("Sin leer el archivo, x11 vale: ",x11,sep=""))
+      print(x11)
+    }
+  })
+  
+  x12<-0
+  progress12 <- reactive({
+    print(paste("antes de empezar x12 vale: ",x12,sep=""))
+    autoInvalidate()
+    if(x12==0){
+      
+      y<-indicador_agruparbusquedas(x12)
+      x12<<-y
+      print(paste("Dentro del if, x12 vale: ",x12,sep=""))
+      print(x12)
+      
+    }else{
+      print(paste("Sin leer el archivo, x12 vale: ",x12,sep=""))
+      print(x12)
+    }
+  })
+  
+  x13<-0
+  progress13 <- reactive({
+    print(paste("antes de empezar x13 vale: ",x13,sep=""))
+    autoInvalidate()
+    if(x13==0){
+      
+      y<-indicador_agruparbusquedas(x13)
+      x13<<-y
+      print(paste("Dentro del if, x13 vale: ",x13,sep=""))
+      print(x13)
+      
+    }else{
+      print(paste("Sin leer el archivo, x13 vale: ",x13,sep=""))
+      print(x13)
+    }
+  })
+  
+  # Same as above, but with fill=TRUE
+  output$progressBox2 <- renderInfoBox({
+    infoBox(
+      "Progress", paste0((100*progress())/8, "%"), icon = icon("list"),
+      color = "purple", fill = TRUE
+    )
+  })
+  # output$approvalBox2 <- renderInfoBox({
+  #   infoBox(
+  #     "Approval", "80%", icon = icon("thumbs-up", lib = "glyphicon"),
+  #     color = "yellow", fill = TRUE
+  #   )
   # })
-  # 
-  # output$analdesc <- renderPlot({
-  #   if (!is.null(input$subsex) && !is.null(input$comparison)) {
-  #     
-  #     cur.subset <- subset(response.times, RT >= 100)
-  #     
-  #     if (input$comparison == "Sex") {
-  #       if (input$subsex != "All") {
-  #         updateRadioButtons(session = session, inputId = "subsex", 
-  #                            selected = "All")
-  #         cond.factor <- cur.subset$Sex
-  #         cond.factor.name <- "Sex"
-  #       } else {
-  #         cond.factor <- cur.subset$Sex
-  #         cond.factor.name <- "Sex"
-  #       }
-  #     }
-  #     
-  #     if (input$subsex != "All") {
-  #       cur.subset <- subset(cur.subset, Sex == input$subsex)
-  #     }
-  #     
-  #     if (input$comparison == "Rounds") {
-  #       finals <- subset(cur.subset, Result == "Finalist")
-  #       first <- subset(cur.subset, Round == 1)
-  #       cur.subset <- rbind(finals, first)
-  #       cond.factor <- c(rep("Finals", times = nrow(finals)),
-  #                        rep("First", times = nrow(first)))
-  #       cond.factor.name <- "Rounds"
-  #     }
-  #     
-  #     if (input$comparison == "Rule Period") {
-  #       cond.factor <- cur.subset$RuleChange
-  #       cond.factor.name <- "Rule Period"
-  #     }
-  #     
-  #     bwplot(cur.subset$RT ~ cond.factor, xlab = cond.factor.name,
-  #            ylab = "Reaction Time (ms)", ylim = c(0, 600), 
-  #            panel = function(x, y, ...){
-  #              panel.abline(h = 100, col = "green", lty = 2, lwd = 1)
-  #              panel.bwplot(x,y, ...)
-  #            },
-  #            par.settings = list(box.umbrella = list(col = "black"),
-  #                                box.dot = list(col = "black"),
-  #                                box.rectangle = list(col = "black"),
-  #                                plot.symbol = list(col = "lightgray")
-  #            )
-  #     )
-  #   }
-  # })
-  # 
-  # model.fit <- reactive({
-  #   cur.subset <- response.times
-  #   
-  #   if (input$subsex != "All") {
-  #     cur.subset <- subset(cur.subset, Sex == input$subsex)
-  #   }
-  #   
-  #   if (input$comparison == "Sex") {
-  #     cond.var <- cur.subset$Sex
-  #     cond.var.unq <- sort(unique(cond.var), decreasing = TRUE)
-  #   } else if (input$comparison == "Rounds") {
-  #     finals <- subset(cur.subset, Result == "Finalist")
-  #     first <- subset(cur.subset, Round == 1)
-  #     cur.subset <- rbind(finals, first)
-  #     cond.var <- c(rep("Finals", times = nrow(finals)), 
-  #                   rep("First", times = nrow(first)))
-  #     cond.var.unq <- sort(unique(cond.var), decreasing = TRUE)
-  #   } else {
-  #     cond.var <- cur.subset$RuleChange
-  #     cond.var.unq <- unique(cond.var)
-  #   }
-  #   
-  #   mod <- list(mu = c(), sig = c(), tau = c(), cond.var.unq = cond.var.unq)
-  #   
-  #   for (i in 1:length(cond.var.unq)) {
-  #     temp <- expgauss.fit(subset(cur.subset, cond.var == cond.var.unq[i])$RT)
-  #     mod$mu[i] <- temp$mu
-  #     mod$sig[i] <- temp$sig
-  #     mod$tau[i] <- temp$tau
-  #   }
-  #   
-  #   return(mod)
-  # })
-  # 
-  # output$modeltab <- DT::renderDataTable({
-  #   mod.fit <- model.fit()
-  #   df <- cbind(mod.fit$mu, mod.fit$sig, mod.fit$tau)
-  #   df <- round(df, digits = 2)
-  #   df <- as.data.frame(df)
-  #   df <- cbind(mod.fit$cond.var.unq, df)
-  #   
-  #   ps <- rep(NA, times = nrow(df))
-  #   for (i in 2:nrow(df)) {
-  #     low.fit <- list(mu = mod.fit$mu[i], sig = mod.fit$sig[i], 
-  #                     tau = mod.fit$tau[i])
-  #     upp.fit <- list(mu = mod.fit$mu[i-1], sig = mod.fit$sig[i-1], 
-  #                     tau = mod.fit$tau[i-1])
-  #     ps[i] <- round(expgauss.ps(low.fit, upp.fit)$ps , digits = 2)
-  #   }
-  #   df <- cbind(df, ps)
-  #   colnames(df) <- c("Factor Level", "mu", "sigma", "tau", "Pr(Superiority)")
-  #   df
-  # }, rownames = FALSE, options = list(dom = "t"))
-  # 
-  # output$modelplot <- renderPlot({
-  #   times <- seq(100, 450, by = 1)
-  #   m.fit <- model.fit()
-  #   par(mar = c(5.1,4.1,2,2))
-  #   temp <- dexgauss(q = times, mu = m.fit$mu[1],
-  #                    sigma = m.fit$sig[1], tau = m.fit$tau[1])
-  #   plot(x = times, y = temp, col = 1, type = "l", lty = 1, ylim = c(0, 0.025),
-  #        lwd = 2, xlab = "Reaction Time (ms)", ylab = "Probability", las = 1)
-  #   
-  #   if(length(m.fit$mu) > 1) {
-  #     for (i in 2:length(m.fit$mu)) {
-  #       temp <- dexgauss(q = times, mu = m.fit$mu[i],
-  #                        sigma = m.fit$sig[i], tau = m.fit$tau[i])
-  #       lines(x = times, y = temp, col = i, lty = i, lwd = 2)
-  #     }
-  #   }
-  #   legend("topright", legend = m.fit$cond.var.unq, col = 1:length(m.fit$mu),
-  #          lty = 1:length(m.fit$mu))
-  #   par(mar = c(5.1,4.1,4.1,2))
-  # })
+  
 })
