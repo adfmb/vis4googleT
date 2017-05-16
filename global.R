@@ -149,8 +149,16 @@ indicador_recomendaciones_fin<-function(indicador){
   return(res)
 }
 
-
-
+dibujandomapa<-function(descargado){
+  if(descargado==0){
+    print("generando otra vez la carga del archivo")
+    res<-tags$iframe(
+      srcdoc = paste(readLines('cosa.html'), collapse = '\n'),
+      width = "100%",
+      height = "600px")
+  }
+  
+}
 
 # indicador_preprocbusquedas_inicio<-function(indicador){
 #   if(indicador==0){

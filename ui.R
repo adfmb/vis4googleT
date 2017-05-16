@@ -100,7 +100,16 @@ dashboardPage(title = "Go and Google Yourself!",
                   
                   # Recommender Tab
                   tabItem(tabName = "recom", 
-                          div(style = "height:800px; width:100%", includeHTML("cosa.html"))),
+                          div(style = "height:300px; width:100%", includeHTML("cosa.html"))),
+                  
+                  tabItem(tabName = "paper",uiOutput('mymap')
+                  #         tags$iframe(
+                  #   srcdoc = paste(readLines('mapa.html'), collapse = '\n'),
+                  #   width = "100%",
+                  #   height = "600px"
+                  # )
+                  ),
+                          #htmlOutput("inc")),
                   
                   tabItem(tabName = "datafile",
                           style = "overflow-y:scroll;",

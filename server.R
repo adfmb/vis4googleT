@@ -125,7 +125,21 @@ shinyServer(function(input, output, session) {
     }
   })
   
-  mapa<-reactiveFileReader(filePath = "cosa.html",intervalMillis = 2000,session = NULL)
+p12<-0
+  mapa<-reactive({
+
+    p12<<-progress12()
+    print(p12)
+    res<-function(p12){
+      if(p12==0){
+      return('cosa.html')
+      }else{
+      return('mapa.html')
+      }
+    }
+    res()
+  })
+  
   
   # print(paste("valor de descargado: ",descargado,sep=""))
   # if(descargado==0){
@@ -189,6 +203,14 @@ shinyServer(function(input, output, session) {
       "Getting Ready...", paste0((100*(all())/6), "%"), icon = icon("grav"),
       color = "black", fill = TRUE
     )
+  })
+  
+  output$mymap <- renderUI({
+    
+    tags$iframe(
+      srcdoc = paste(readLines(mapa()), collapse = '\n'),
+      width = "100%",
+      height = "600px")
   })
   
   # x2<-0
