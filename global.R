@@ -1,44 +1,28 @@
 library(shiny)
 library(shinydashboard)
+library(RCurl)
 
+path<-"https://s3-us-west-2.amazonaws.com/dpaequipo10/indicadores/"
 
-indicador_unzip<-function(indicador){
-  if(indicador==0){
-    print("generando consulta a S3")
-    res<-read.csv(
-      "indicadores/indicador_unzip.csv",
-      #   textConnection(getURL(
-      # "https://s3-us-west-2.amazonaws.com/vis4googlet/indicador_unzip.csv")),
-      header=T)$indicador
+indicador_unzip<-function(){
+  if(file.exists("/tmp/todo_googlet.zip")){
+    return(1)
   }else{
-    print("consultas a S3 concluidas")
-    res<-indicador
-  }
-  return(res)
+    return(0)}
 }
 
-indicador_agruparbusquedas<-function(indicador){
-  if(indicador==0){
-    print("generando consulta a S3")
-    res<-read.csv(
-      "indicadores/indicador_agruparbusquedas.csv",
-      #   textConnection(getURL(
-      # "https://s3-us-west-2.amazonaws.com/vis4googlet/indicador_agruparbusquedas.csv")),
-      header=T)$indicador
+indicador_agruparbusquedas<-function(){
+  if(file.exists("/tmp/todas_busquedas.json")){
+    return(1)
   }else{
-    print("consultas a S3 concluidas")
-    res<-indicador
-  }
-  return(res)
+    return(0)}
 }
 
 indicador_uptodasbusquedas<-function(indicador){
   if(indicador==0){
     print("generando consulta a S3")
-    res<-read.csv(
-      "indicadores/indicador_uptodasbusquedas.csv",
-      #   textConnection(getURL(
-      # "https://s3-us-west-2.amazonaws.com/vis4googlet/indicador_uptodasbusquedas.csv")),
+    res<-read.csv(textConnection(getURL(
+      paste(path,"indicador_uptodasbusquedas.csv",sep=""))),
       header=T)$indicador
   }else{
     print("consultas a S3 concluidas")
@@ -50,10 +34,8 @@ indicador_uptodasbusquedas<-function(indicador){
 indicador_uptodasubicaciones<-function(indicador){
   if(indicador==0){
     print("generando consulta a S3")
-    res<-read.csv(
-      "indicadores/indicador_uptodasubicaciones.csv",
-      #   textConnection(getURL(
-      # "https://s3-us-west-2.amazonaws.com/vis4googlet/indicador_uptodasubicaciones.csv")),
+    res<-read.csv(textConnection(getURL(
+      paste(path,"indicador_uptodasubicaciones.csv",sep=""))),
       header=T)$indicador
   }else{
     print("consultas a S3 concluidas")
@@ -65,10 +47,8 @@ indicador_uptodasubicaciones<-function(indicador){
 indicador_uptodosmails<-function(indicador){
   if(indicador==0){
     print("generando consulta a S3")
-    res<-read.csv(
-      "indicadores/indicador_uptodosmails.csv",
-      #   textConnection(getURL(
-      # "https://s3-us-west-2.amazonaws.com/vis4googlet/indicador_uptodosmails.csv")),
+    res<-read.csv(textConnection(getURL(
+      paste(path,"indicador_uptodosmails.csv",sep=""))),
       header=T)$indicador
   }else{
     print("consultas a S3 concluidas")
@@ -80,10 +60,8 @@ indicador_uptodosmails<-function(indicador){
 indicador_preprocbusquedas_fin<-function(indicador){
   if(indicador==0){
     print("generando consulta a S3")
-    res<-read.csv(
-      "indicadores/indicador_preprocbusquedas_fin.csv",
-      #   textConnection(getURL(
-      # "https://s3-us-west-2.amazonaws.com/vis4googlet/indicador_preprocbusquedas_fin.csv")),
+    res<-read.csv(textConnection(getURL(
+      paste(path,"indicador_preprocbusquedas_fin.csv",sep=""))),
       header=T)$indicador
   }else{
     print("consultas a S3 concluidas")
@@ -95,10 +73,8 @@ indicador_preprocbusquedas_fin<-function(indicador){
 indicador_preprocubicaciones_fin<-function(indicador){
   if(indicador==0){
     print("generando consulta a S3")
-    res<-read.csv(
-      "indicadores/indicador_preprocubicaciones_fin.csv",
-      #   textConnection(getURL(
-      # "https://s3-us-west-2.amazonaws.com/vis4googlet/indicador_preprocubicaciones_fin.csv")),
+    res<-read.csv(textConnection(getURL(
+      paste(path,"indicador_preprocubicaciones_fin.csv",sep=""))),
       header=T)$indicador
   }else{
     print("consultas a S3 concluidas")
@@ -110,10 +86,8 @@ indicador_preprocubicaciones_fin<-function(indicador){
 indicador_preprocmails_fin<-function(indicador){
   if(indicador==0){
     print("generando consulta a S3")
-    res<-read.csv(
-      "indicadores/indicador_preprocmails_fin.csv",
-      #   textConnection(getURL(
-      # "https://s3-us-west-2.amazonaws.com/vis4googlet/indicador_preprocmails_fin.csv")),
+    res<-read.csv(textConnection(getURL(
+      paste(path,"indicador_preprocmails_fin.csv",sep=""))),
       header=T)$indicador
   }else{
     print("consultas a S3 concluidas")
@@ -125,10 +99,8 @@ indicador_preprocmails_fin<-function(indicador){
 indicador_analisisbusquedas_fin<-function(indicador){
   if(indicador==0){
     print("generando consulta a S3")
-    res<-read.csv(
-      "indicadores/indicador_analisisbusquedas_fin.csv",
-      #   textConnection(getURL(
-      # "https://s3-us-west-2.amazonaws.com/vis4googlet/indicador_analisisbusquedas_fin.csv")),
+    res<-read.csv(textConnection(getURL(
+      paste(path,"indicador_analisisbusquedas_fin.csv",sep=""))),
       header=T)$indicador
   }else{
     print("consultas a S3 concluidas")
@@ -140,10 +112,8 @@ indicador_analisisbusquedas_fin<-function(indicador){
 indicador_analisisubicaciones_fin<-function(indicador){
   if(indicador==0){
     print("generando consulta a S3")
-    res<-read.csv(
-      "indicadores/indicador_analisisubicaciones_fin.csv",
-      #   textConnection(getURL(
-      # "https://s3-us-west-2.amazonaws.com/vis4googlet/indicador_analisisubicaciones_fin.csv")),
+    res<-read.csv(textConnection(getURL(
+      paste(path,"indicador_analisisubicaciones_fin.csv",sep=""))),
       header=T)$indicador
   }else{
     print("consultas a S3 concluidas")
@@ -155,10 +125,8 @@ indicador_analisisubicaciones_fin<-function(indicador){
 indicador_analisismails_fin<-function(indicador){
   if(indicador==0){
     print("generando consulta a S3")
-    res<-read.csv(
-      "indicadores/indicador_analisismails_fin.csv",
-      #   textConnection(getURL(
-      # "https://s3-us-west-2.amazonaws.com/vis4googlet/indicador_analisismails_fin.csv")),
+    res<-read.csv(textConnection(getURL(
+      paste(path,"indicador_analisismails_fin.csv",sep=""))),
       header=T)$indicador
   }else{
     print("consultas a S3 concluidas")
@@ -170,10 +138,9 @@ indicador_analisismails_fin<-function(indicador){
 indicador_recomendaciones_fin<-function(indicador){
   if(indicador==0){
     print("generando consulta a S3")
-    res<-read.csv(
-      "indicadores/indicador_recomendaciones_fin.csv",
-      #   textConnection(getURL(
-      # "https://s3-us-west-2.amazonaws.com/vis4googlet/indicador_recomendaciones_fin.csv")),
+    res<-read.csv("indicadores/indicador_recomendaciones_fin.csv",
+      # textConnection(getURL(
+      # paste(path,"indicador_recomendaciones_fin.csv",sep=""))),
       header=T)$indicador
   }else{
     print("consultas a S3 concluidas")
@@ -181,6 +148,7 @@ indicador_recomendaciones_fin<-function(indicador){
   }
   return(res)
 }
+
 
 
 

@@ -47,7 +47,7 @@ dashboardPage(title = "Go and Google Yourself!",
                   menuItem("Data", tabName = "datafile", icon = icon("table")),
                   menuItem("Analysis", tabName = "analysis", icon = icon("binoculars")),
                   menuItem("Paper", tabName = "paper", icon = icon("file-pdf-o")),
-                  menuItem("Presentation", tabName = "present", icon = icon("microphone")),
+                  menuItem("Recommender", tabName = "recom", icon = icon("microphone")),
                   menuItem("About", tabName = "about", icon = icon("info")),
                   hr(),
                   sidebarUserPanel(name = a("Alfredo M", target = "_blank_",
@@ -58,7 +58,7 @@ dashboardPage(title = "Go and Google Yourself!",
                                             href = "https://github.com/pedrohserrano"), 
                                    subtitle = "Data Scientist",
                                    image = "images/pit.png"),
-                  sidebarUserPanel(name = a("Eduardo H", target = "_blank_",
+                  sidebarUserPanel(name = a("Eduardo M", target = "_blank_",
                                             href = "https://github.com/eduardomtz"), 
                                    subtitle = "Computer Scientist",
                                    image = "images/lal.png"),
@@ -96,21 +96,51 @@ dashboardPage(title = "Go and Google Yourself!",
                 tabItems(
                   # Introduction Tab
                   tabItem(tabName = "intro", 
+                          div(style = "height:2000px; width:100%", includeHTML("intro.html"))),
+                  
+                  # Recommender Tab
+                  tabItem(tabName = "recom", 
                           div(style = "height:800px; width:100%", includeHTML("cosa.html"))),
                   
                   tabItem(tabName = "datafile",
                           style = "overflow-y:scroll;",
-                          box(width = 15, height = "400px", title = "User Inputs",
+                          box(width = 12, height = "100px", #title = "User Inputs",
                               fileInput('file1', "Choose your .zip file with your Google's locations, serches and mails",
                                         accept = c(
                                           '.zip'
                                         )
                               )),
-                          box(width = 15, height = "400px", title = "Process",
-                              infoBox("Tasks", 8, icon = icon("street-view"), fill = TRUE),
-                              infoBoxOutput("progressBox2")#,
-                              # infoBoxOutput("approvalBox2")
-                          )
+                          box(width = 12, height = "150px",
+                              valueBoxOutput("progressBoxtodo",width = 12)),
+                          box(width = 6, height = "150px", title = "Unzip",
+                              infoBoxOutput("progressBox1",width = 6)),
+                          box(width = 6, height = "150px", title = "All Up",#mails up",
+                              valueBoxOutput("progressBox5",width = 6)),
+                          box(width = 6, height = "150px", title = "Preproc's done",#mails",
+                              valueBoxOutput("progressBox8",width = 6)),
+                          box(width = 6, height = "150px", title = "Analysis locations",
+                              valueBoxOutput("progressBox10",width = 6)),
+                          box(width = 6, height = "150px", title = "Analysis done",#mails",
+                              valueBoxOutput("progressBox11",width = 6)),
+                          box(width = 6, height = "150px", title = "Recommender",
+                              valueBoxOutput("progressBox12",width = 6))    
+                      
+                          # # box(width = 15, height = "400px", title = "Progress",
+                          # #     infoBox("All searches", 1, icon = icon("street-view"), fill = TRUE),
+                          # box(width = 7, height = "200px", title = "All searches ready",
+                          # valueBoxOutput("progressBox2",width = 7)),
+                          # box(width = 7, height = "200px", title = "All searches up ",
+                          #     valueBoxOutput("progressBox3",width = 7)),
+                          # box(width = 7, height = "200px", title = "All locations up",
+                          #     valueBoxOutput("progressBox4",width = 7)),
+                          # box(width = 7, height = "200px", title = "Preproc searches",
+                          #     valueBoxOutput("progressBox6",width = 7)),
+                          # box(width = 7, height = "200px", title = "Preproc locations",
+                          #     valueBoxOutput("progressBox7",width = 7)),
+                          # box(width = 7, height = "200px", title = "Analysis searches",
+                          #     valueBoxOutput("progressBox9",width = 7)),
+                          # 
+
                   # ),
                   # 
                   # tabItem(tabName = "datafile",

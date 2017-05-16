@@ -20,7 +20,7 @@ shinyServer(function(input, output, session) {
   
   observe({ mvzip() })
   
-  autoInvalidate <- reactiveTimer(2000)
+  autoInvalidate <- reactiveTimer(15000)
 
   x1<-0
   progress1 <- reactive({
@@ -28,7 +28,7 @@ shinyServer(function(input, output, session) {
     autoInvalidate()
     if(x1==0){
       
-      y<-indicador_unzip(x1)
+      y<-indicador_unzip()
       x1<<-y
       print(paste("Dentro del if, x1 vale: ",x1,sep=""))
       print(x1)
@@ -36,57 +36,6 @@ shinyServer(function(input, output, session) {
     }else{
       print(paste("Sin leer el archivo, x1 vale: ",x1,sep=""))
       print(x1)
-    }
-  })
-  
-  x2<-0
-  progress2 <- reactive({
-    print(paste("antes de empezar x2 vale: ",x2,sep=""))
-    autoInvalidate()
-    if(x2==0){
-      
-      y<-indicador_agruparbusquedas(x2)
-      x2<<-y
-      print(paste("Dentro del if, x2 vale: ",x2,sep=""))
-      print(x2)
-      
-    }else{
-      print(paste("Sin leer el archivo, x2 vale: ",x2,sep=""))
-      print(x2)
-    }
-  })
-  
-  x3<-0
-  progress3 <- reactive({
-    print(paste("antes de empezar x3 vale: ",x3,sep=""))
-    autoInvalidate()
-    if(x3==0){
-      
-      y<-indicador_uptodasbusquedas(x3)
-      x3<<-y
-      print(paste("Dentro del if, x3 vale: ",x3,sep=""))
-      print(x3)
-      
-    }else{
-      print(paste("Sin leer el archivo, x3 vale: ",x3,sep=""))
-      print(x3)
-    }
-  })
-  
-  x4<-0
-  progress4 <- reactive({
-    print(paste("antes de empezar x4 vale: ",x4,sep=""))
-    autoInvalidate()
-    if(x4==0){
-      
-      y<-indicador_uptodasubicaciones(x4)
-      x4<<-y
-      print(paste("Dentro del if, x4 vale: ",x4,sep=""))
-      print(x4)
-      
-    }else{
-      print(paste("Sin leer el archivo, x4 vale: ",x4,sep=""))
-      print(x4)
     }
   })
   
@@ -107,40 +56,6 @@ shinyServer(function(input, output, session) {
     }
   })
   
-  x6<-0
-  progress6 <- reactive({
-    print(paste("antes de empezar x6 vale: ",x6,sep=""))
-    autoInvalidate()
-    if(x6==0){
-      
-      y<-indicador_preprocbusquedas_fin(x6)
-      x6<<-y
-      print(paste("Dentro del if, x6 vale: ",x6,sep=""))
-      print(x6)
-      
-    }else{
-      print(paste("Sin leer el archivo, x6 vale: ",x6,sep=""))
-      print(x6)
-    }
-  })
-  
-  x7<-0
-  progress7 <- reactive({
-    print(paste("antes de empezar x7 vale: ",x7,sep=""))
-    autoInvalidate()
-    if(x7==0){
-      
-      y<-indicador_preprocubicaciones_fin(x7)
-      x7<<-y
-      print(paste("Dentro del if, x7 vale: ",x7,sep=""))
-      print(x7)
-      
-    }else{
-      print(paste("Sin leer el archivo, x7 vale: ",x7,sep=""))
-      print(x7)
-    }
-  })
-  
   x8<-0
   progress8 <- reactive({
     print(paste("antes de empezar x8 vale: ",x8,sep=""))
@@ -155,23 +70,6 @@ shinyServer(function(input, output, session) {
     }else{
       print(paste("Sin leer el archivo, x8 vale: ",x8,sep=""))
       print(x8)
-    }
-  })
-  
-  x9<-0
-  progress9 <- reactive({
-    print(paste("antes de empezar x9 vale: ",x9,sep=""))
-    autoInvalidate()
-    if(x9==0){
-      
-      y<-indicador_analisisbusquedas_fin(x9)
-      x9<<-y
-      print(paste("Dentro del if, x9 vale: ",x9,sep=""))
-      print(x9)
-      
-    }else{
-      print(paste("Sin leer el archivo, x9 vale: ",x9,sep=""))
-      print(x9)
     }
   })
   
@@ -198,7 +96,7 @@ shinyServer(function(input, output, session) {
     autoInvalidate()
     if(x11==0){
       
-      y<-indicador_agruparbusquedas(x11)
+      y<-indicador_analisismails_fin(x11)
       x11<<-y
       print(paste("Dentro del if, x11 vale: ",x11,sep=""))
       print(x11)
@@ -210,12 +108,13 @@ shinyServer(function(input, output, session) {
   })
   
   x12<-0
+  descargado<-0
   progress12 <- reactive({
     print(paste("antes de empezar x12 vale: ",x12,sep=""))
     autoInvalidate()
     if(x12==0){
       
-      y<-indicador_agruparbusquedas(x12)
+      y<-indicador_recomendaciones_fin(x12)
       x12<<-y
       print(paste("Dentro del if, x12 vale: ",x12,sep=""))
       print(x12)
@@ -226,34 +125,216 @@ shinyServer(function(input, output, session) {
     }
   })
   
-  x13<-0
-  progress13 <- reactive({
-    print(paste("antes de empezar x13 vale: ",x13,sep=""))
-    autoInvalidate()
-    if(x13==0){
-      
-      y<-indicador_agruparbusquedas(x13)
-      x13<<-y
-      print(paste("Dentro del if, x13 vale: ",x13,sep=""))
-      print(x13)
-      
-    }else{
-      print(paste("Sin leer el archivo, x13 vale: ",x13,sep=""))
-      print(x13)
-    }
-  })
+  mapa<-reactiveFileReader(filePath = "cosa.html",intervalMillis = 2000,session = NULL)
+  
+  # print(paste("valor de descargado: ",descargado,sep=""))
+  # if(descargado==0){
+  #   print("descargando html")
+  #   observe({
+  #     temp<-tempfile()
+  #     download.file("https://s3-us-west-2.amazonaws.com/dpaequipo10/resultado/cosa.html",temp)
+  #     system(paste("mv ",temp," cosa.html",sep=""))
+  #     system("ls /tmp/")
+  #   })
+  #   descargado<<-1
+  # }else {print("no se vuelve a cargar ni verga")}
+  all<-reactive({progress1()+progress5()+progress8()+
+    progress10()+progress11()+progress12()})
   
   # Same as above, but with fill=TRUE
-  output$progressBox2 <- renderInfoBox({
+  output$progressBox1 <- renderInfoBox({
     infoBox(
-      "Progress", paste0((100*progress())/8, "%"), icon = icon("list"),
+      "Progress", paste0((100*progress1()), "%"), icon = icon("list"),
       color = "purple", fill = TRUE
     )
   })
-  # output$approvalBox2 <- renderInfoBox({
+  
+  output$progressBox5 <- renderInfoBox({
+    infoBox(
+      "Progress", paste0((100*progress5()), "%"), icon = icon("list"),
+      color = "blue", fill = TRUE
+    )
+  })
+  
+  output$progressBox8 <- renderInfoBox({
+    infoBox(
+      "Progress", paste0((100*progress8()), "%"), icon = icon("list"),
+      color = "red", fill = TRUE
+    )
+  })
+  
+  output$progressBox10 <- renderInfoBox({
+    infoBox(
+      "Progress", paste0((100*progress10()), "%"), icon = icon("list"),
+      color = "yellow", fill = TRUE
+    )
+  })
+  
+  output$progressBox11 <- renderInfoBox({
+    infoBox(
+      "Progress", paste0((100*progress11()), "%"), icon = icon("list"),
+      color = "green", fill = TRUE
+    )
+  })
+  
+  output$progressBox12 <- renderInfoBox({
+    infoBox(
+      "Progress", paste0((100*progress12()), "%"), icon = icon("list"),
+      color = "fuchsia", fill = TRUE
+    )
+  })
+  
+  output$progressBoxtodo <- renderInfoBox({
+    infoBox(
+      "Getting Ready...", paste0((100*(all())/6), "%"), icon = icon("grav"),
+      color = "black", fill = TRUE
+    )
+  })
+  
+  # x2<-0
+  # progress2 <- reactive({
+  #   print(paste("antes de empezar x2 vale: ",x2,sep=""))
+  #   autoInvalidate()
+  #   if(x2==0){
+  #     
+  #     y<-indicador_agruparbusquedas()
+  #     x2<<-y
+  #     print(paste("Dentro del if, x2 vale: ",x2,sep=""))
+  #     print(x2)
+  #     
+  #   }else{
+  #     print(paste("Sin leer el archivo, x2 vale: ",x2,sep=""))
+  #     print(x2)
+  #   }
+  # })
+  # 
+  # x3<-0
+  # progress3 <- reactive({
+  #   print(paste("antes de empezar x3 vale: ",x3,sep=""))
+  #   autoInvalidate()
+  #   if(x3==0){
+  #     
+  #     y<-indicador_uptodasbusquedas(x3)
+  #     x3<<-y
+  #     print(paste("Dentro del if, x3 vale: ",x3,sep=""))
+  #     print(x3)
+  #     
+  #   }else{
+  #     print(paste("Sin leer el archivo, x3 vale: ",x3,sep=""))
+  #     print(x3)
+  #   }
+  # })
+  # 
+  # x4<-0
+  # progress4 <- reactive({
+  #   print(paste("antes de empezar x4 vale: ",x4,sep=""))
+  #   autoInvalidate()
+  #   if(x4==0){
+  #     
+  #     y<-indicador_uptodasubicaciones(x4)
+  #     x4<<-y
+  #     print(paste("Dentro del if, x4 vale: ",x4,sep=""))
+  #     print(x4)
+  #     
+  #   }else{
+  #     print(paste("Sin leer el archivo, x4 vale: ",x4,sep=""))
+  #     print(x4)
+  #   }
+  # })
+  
+  
+  # x6<-0
+  # progress6 <- reactive({
+  #   print(paste("antes de empezar x6 vale: ",x6,sep=""))
+  #   autoInvalidate()
+  #   if(x6==0){
+  #     
+  #     y<-indicador_preprocbusquedas_fin(x6)
+  #     x6<<-y
+  #     print(paste("Dentro del if, x6 vale: ",x6,sep=""))
+  #     print(x6)
+  #     
+  #   }else{
+  #     print(paste("Sin leer el archivo, x6 vale: ",x6,sep=""))
+  #     print(x6)
+  #   }
+  # })
+  # 
+  # x7<-0
+  # progress7 <- reactive({
+  #   print(paste("antes de empezar x7 vale: ",x7,sep=""))
+  #   autoInvalidate()
+  #   if(x7==0){
+  #     
+  #     y<-indicador_preprocubicaciones_fin(x7)
+  #     x7<<-y
+  #     print(paste("Dentro del if, x7 vale: ",x7,sep=""))
+  #     print(x7)
+  #     
+  #   }else{
+  #     print(paste("Sin leer el archivo, x7 vale: ",x7,sep=""))
+  #     print(x7)
+  #   }
+  # })
+  
+
+  
+  # x9<-0
+  # progress9 <- reactive({
+  #   print(paste("antes de empezar x9 vale: ",x9,sep=""))
+  #   autoInvalidate()
+  #   if(x9==0){
+  #     
+  #     y<-indicador_analisisbusquedas_fin(x9)
+  #     x9<<-y
+  #     print(paste("Dentro del if, x9 vale: ",x9,sep=""))
+  #     print(x9)
+  #     
+  #   }else{
+  #     print(paste("Sin leer el archivo, x9 vale: ",x9,sep=""))
+  #     print(x9)
+  #   }
+  # })
+
+  # output$progressBox2 <- renderInfoBox({
   #   infoBox(
-  #     "Approval", "80%", icon = icon("thumbs-up", lib = "glyphicon"),
-  #     color = "yellow", fill = TRUE
+  #     "Progress", paste0((100*progress2()), "%"), icon = icon("list"),
+  #     color = "purple", fill = TRUE
+  #   )
+  # })
+  # 
+  # output$progressBox3 <- renderInfoBox({
+  #   infoBox(
+  #     "Progress", paste0((100*progress3()), "%"), icon = icon("list"),
+  #     color = "purple", fill = TRUE
+  #   )
+  # })
+  # 
+  # output$progressBox4 <- renderInfoBox({
+  #   infoBox(
+  #     "Progress", paste0((100*progress4()), "%"), icon = icon("list"),
+  #     color = "purple", fill = TRUE
+  #   )
+  # })
+  
+  # output$progressBox6 <- renderInfoBox({
+  #   infoBox(
+  #     "Progress", paste0((100*progress6()), "%"), icon = icon("list"),
+  #     color = "purple", fill = TRUE
+  #   )
+  # })
+  # 
+  # output$progressBox7 <- renderInfoBox({
+  #   infoBox(
+  #     "Progress", paste0((100*progress7()), "%"), icon = icon("list"),
+  #     color = "purple", fill = TRUE
+  #   )
+  # })
+  
+  # output$progressBox9 <- renderInfoBox({
+  #   infoBox(
+  #     "Progress", paste0((100*progress9()), "%"), icon = icon("list"),
+  #     color = "purple", fill = TRUE
   #   )
   # })
   
