@@ -99,10 +99,13 @@ dashboardPage(title = "Go and Google Yourself!",
                           div(style = "height:2000px; width:100%", includeHTML("intro.html"))),
                   
                   # Recommender Tab
-                  tabItem(tabName = "recom", 
-                          div(style = "height:300px; width:100%", includeHTML("cosa.html"))),
+                  # tabItem(tabName = "recom", 
+                  #         div(style = "height:300px; width:100%", includeHTML("cosa.html"))),
                   
-                  tabItem(tabName = "paper",uiOutput('mymap')
+                  tabItem(tabName = "recom",uiOutput('mymap'),
+                          helpText(a("mapa",
+                                     href="https://s3-us-west-2.amazonaws.com/dpaequipo10/resultado/mapa.html",
+                                     target="_blank"))
                   #         tags$iframe(
                   #   srcdoc = paste(readLines('mapa.html'), collapse = '\n'),
                   #   width = "100%",
@@ -127,8 +130,8 @@ dashboardPage(title = "Go and Google Yourself!",
                               valueBoxOutput("progressBox5",width = 6)),
                           box(width = 6, height = "150px", title = "Preproc's done",#mails",
                               valueBoxOutput("progressBox8",width = 6)),
-                          box(width = 6, height = "150px", title = "Analysis locations",
-                              valueBoxOutput("progressBox10",width = 6)),
+                          # box(width = 6, height = "150px", title = "Analysis locations",
+                          #     valueBoxOutput("progressBox10",width = 6)),
                           box(width = 6, height = "150px", title = "Analysis done",#mails",
                               valueBoxOutput("progressBox11",width = 6)),
                           box(width = 6, height = "150px", title = "Recommender",

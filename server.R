@@ -73,22 +73,22 @@ shinyServer(function(input, output, session) {
     }
   })
   
-  x10<-0
-  progress10 <- reactive({
-    print(paste("antes de empezar x10 vale: ",x10,sep=""))
-    autoInvalidate()
-    if(x10==0){
-      
-      y<-indicador_analisisubicaciones_fin(x10)
-      x10<<-y
-      print(paste("Dentro del if, x10 vale: ",x10,sep=""))
-      print(x10)
-      
-    }else{
-      print(paste("Sin leer el archivo, x10 vale: ",x10,sep=""))
-      print(x10)
-    }
-  })
+  # x10<-0
+  # progress10 <- reactive({
+  #   print(paste("antes de empezar x10 vale: ",x10,sep=""))
+  #   autoInvalidate()
+  #   if(x10==0){
+  #     
+  #     y<-indicador_analisisubicaciones_fin(x10)
+  #     x10<<-y
+  #     print(paste("Dentro del if, x10 vale: ",x10,sep=""))
+  #     print(x10)
+  #     
+  #   }else{
+  #     print(paste("Sin leer el archivo, x10 vale: ",x10,sep=""))
+  #     print(x10)
+  #   }
+  # })
   
   x11<-0
   progress11 <- reactive({
@@ -108,7 +108,6 @@ shinyServer(function(input, output, session) {
   })
   
   x12<-0
-  descargado<-0
   progress12 <- reactive({
     print(paste("antes de empezar x12 vale: ",x12,sep=""))
     autoInvalidate()
@@ -125,35 +124,43 @@ shinyServer(function(input, output, session) {
     }
   })
   
-p12<-0
+  descargado<-0
+  # imprimemapa<-'cosa.html'
   mapa<-reactive({
-
-    p12<<-progress12()
-    print(p12)
-    res<-function(p12){
-      if(p12==0){
-      return('cosa.html')
-      }else{
-      return('mapa.html')
+    
+      autoInvalidate()
+      while(x12==1 & descargado==0){
+        print("calculando nombre de mapa")
+        temp<-tempfile()
+        download.file("https://s3-us-west-2.amazonaws.com/dpaequipo10/resultado/mapapormientras.html",temp)
+        system(paste("mv ",temp," mapa.html",sep=""))
+        print(imprimemapa)
+        descargado<<-1
+        imprimemapa<<-dibujandomapa(x12)
       }
-    }
-    res()
+      imprimemapa
+    
   })
+    
+    # print(paste("antes de empezar x12 vale en mapa: ",x12,sep=""))
+    # if(imprimemapa==0){
+    #   autoInvalidate()
+    #   if(descargado==0 & x12==1){
+    #   print("calculando nombre de mapa")
+    #   imprimemapa<<-dibujandomapa(x12)
+    #   descargado<<-1
+    #   print(descargado)
+    #   print(imprimemapa)
+    # }else{
+    #   # print(paste("no ejecuta ni ptm"))
+    #   # print(descargado)
+    #   imprimemapa
+    
+    # }
   
-  
-  # print(paste("valor de descargado: ",descargado,sep=""))
-  # if(descargado==0){
-  #   print("descargando html")
-  #   observe({
-  #     temp<-tempfile()
-  #     download.file("https://s3-us-west-2.amazonaws.com/dpaequipo10/resultado/cosa.html",temp)
-  #     system(paste("mv ",temp," cosa.html",sep=""))
-  #     system("ls /tmp/")
-  #   })
-  #   descargado<<-1
-  # }else {print("no se vuelve a cargar ni verga")}
+
   all<-reactive({progress1()+progress5()+progress8()+
-    progress10()+progress11()+progress12()})
+      progress11()+progress12()})
   
   # Same as above, but with fill=TRUE
   output$progressBox1 <- renderInfoBox({
@@ -177,13 +184,6 @@ p12<-0
     )
   })
   
-  output$progressBox10 <- renderInfoBox({
-    infoBox(
-      "Progress", paste0((100*progress10()), "%"), icon = icon("list"),
-      color = "yellow", fill = TRUE
-    )
-  })
-  
   output$progressBox11 <- renderInfoBox({
     infoBox(
       "Progress", paste0((100*progress11()), "%"), icon = icon("list"),
@@ -200,7 +200,7 @@ p12<-0
   
   output$progressBoxtodo <- renderInfoBox({
     infoBox(
-      "Getting Ready...", paste0((100*(all())/6), "%"), icon = icon("grav"),
+      "Getting Ready...", paste0((100*(all())/5), "%"), icon = icon("grav"),
       color = "black", fill = TRUE
     )
   })
@@ -212,6 +212,27 @@ p12<-0
       width = "100%",
       height = "600px")
   })
+  
+  # print(paste("valor de descargado: ",descargado,sep=""))
+  # if(descargado==0){
+  #   print("descargando html")
+  #   observe({
+  #     temp<-tempfile()
+  #     download.file("https://s3-us-west-2.amazonaws.com/dpaequipo10/resultado/cosa.html",temp)
+  #     system(paste("mv ",temp," cosa.html",sep=""))
+  #     system("ls /tmp/")
+  #   })
+  #   descargado<<-1
+  # }else {print("no se vuelve a cargar ni verga")}
+  
+  # output$progressBox10 <- renderInfoBox({
+  #   infoBox(
+  #     "Progress", paste0((100*progress10()), "%"), icon = icon("list"),
+  #     color = "yellow", fill = TRUE
+  #   )
+  # })
+  
+
   
   # x2<-0
   # progress2 <- reactive({

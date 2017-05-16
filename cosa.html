@@ -1,3 +1,57 @@
-<center><h3>Wait4it</h3></center>
-<br>
-<center><h2>Mapping your tomorrow's cravings...</h2></center>
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Marker Clustering</title>
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <script>
+
+      function initMap() {
+
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 3,
+          center: {lat: -28.024, lng: 140.887}
+        });
+
+        var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+
+        var markers = locations.map(function(location, i) {var tipos = ["nivel1","restaurant","night-club","nivel1","night-club","nivel2","night-club","nivel2","night-club","nivel2","gym","restaurant","bar","night-club","nivel2","night-club","nivel2","bar","night-club","nivel2","night-club","nivel2","gym","restaurant","night-club","nivel2","restaurant","night-club","nivel2","night-club","nivel2","gym","restaurant","night-club","nivel2","night-club","nivel2","night-club","nivel2","restaurant","night-club","nivel2","night-club","nivel2","night-club","nivel2","night-club","nivel2"];var nombres = ["casa/trabajo/escuela","Fonda El Tío","San Luis Potosí","casa/trabajo/escuela","Cerro del Agua","Lugar frecuente","43-99 Aldie St","Lugar frecuente","Boston","Lugar frecuente","Bikram Yoga Cambridge","Subway","Whitneys","40-26 Jfk St","Lugar frecuente","Doctor Paul Dudley White Bike Path","Lugar frecuente","AgaveBarclayrd","702 Texas 8 Beltway Frontage Rd","Lugar frecuente","Veracruz 53-106","Lugar frecuente","Do Shim","LA CANASTA","Calle del Dr. Gálvez 7-31","Lugar frecuente","Epazote #cocinadecasa","Ramón Corona 9-14","Lugar frecuente","Eta 6-4","Lugar frecuente","Sport Gym","Carl's Jr","Loreto 10-20","Lugar frecuente","Eje Vial 10 Sur","Lugar frecuente","Hidalgo","Lugar frecuente","CHAMBELLE","Dakota 341-312","Lugar frecuente","Celestun 177-8","Lugar frecuente","Calle Mayas","Lugar frecuente","Francisco I. Madero","Lugar frecuente"];
+
+	var icon='src/icons/'+tipos[i]+'.svg'
+          return new google.maps.Marker({
+            position: location,
+            icon: icon,
+            title : nombres[i % nombres.length]
+            });
+        });
+
+        var markerCluster = new MarkerClusterer(map, markers,
+            {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
+      }
+      var locations = [{lat: 19.3408760062, lng: -99.1979382932},{lat: 19.341042, lng: -99.197862},{lat: 19.341013, lng: -99.1979729},{lat: 19.3407851171, lng: -99.1725315424},{lat: 19.3403999, lng: -99.17262079999999},{lat: 42.3588993933, lng: -71.1350092684},{lat: 42.3587627, lng: -71.13411529999999},{lat: 42.3700165103, lng: -71.1287189066},{lat: 42.3600825, lng: -71.0588801},{lat: 42.3727908738, lng: -71.1199259189},{lat: 42.3727474, lng: -71.119703},{lat: 42.3726501, lng: -71.1197329},{lat: 42.3727907, lng: -71.1201974},{lat: 42.3727701, lng: -71.11999220000001},{lat: 42.3695323155, lng: -71.1207047441},{lat: 42.3696951, lng: -71.1191585},{lat: 29.9380241147, lng: -95.3861076251},{lat: 29.9382692, lng: -95.38633759999999},{lat: 29.9384065, lng: -95.3862809},{lat: 19.3416681107, lng: -99.2017723624},{lat: 19.3413812, lng: -99.2020483},{lat: 19.3441141766, lng: -99.190895325},{lat: 19.3437777, lng: -99.1908597},{lat: 19.343925, lng: -99.19067199999999},{lat: 19.3439385, lng: -99.19096809999999},{lat: 19.3383241653, lng: -99.1960984075},{lat: 19.3379167, lng: -99.19628689999999},{lat: 19.3382135, lng: -99.1964679},{lat: 19.3446332556, lng: -99.1714472061},{lat: 19.3444848, lng: -99.1714372},{lat: 19.3400348704, lng: -99.1910340847},{lat: 19.3401679, lng: -99.19142989999999},{lat: 19.3398789, lng: -99.19067930000001},{lat: 19.3397629, lng: -99.191051},{lat: 19.3361706123, lng: -99.1765468328},{lat: 19.3362522, lng: -99.1766083},{lat: 19.3431842286, lng: -99.1977208732},{lat: 19.34329, lng: -99.1981078},{lat: 19.3884770276, lng: -99.1792999939},{lat: 19.38812129999999, lng: -99.1792414},{lat: 19.3887967, lng: -99.17902959999999},{lat: 19.2872532884, lng: -99.2147451714},{lat: 19.2876221, lng: -99.21460379999999},{lat: 19.279743478, lng: -99.1719637837},{lat: 19.2798707, lng: -99.17211569999999},{lat: 16.4876557826, lng: -95.0381715},{lat: 16.4874779, lng: -95.0383935},{lat: 16.5455514098, lng: -95.0865431545}]
+    </script>
+    <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB-yjSWzs0WVI822X6a68P5JpsqjLVCxHk&callback=initMap">
+    </script>
+  </body>
+</html>

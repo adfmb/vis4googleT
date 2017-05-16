@@ -138,9 +138,8 @@ indicador_analisismails_fin<-function(indicador){
 indicador_recomendaciones_fin<-function(indicador){
   if(indicador==0){
     print("generando consulta a S3")
-    res<-read.csv("indicadores/indicador_recomendaciones_fin.csv",
-      # textConnection(getURL(
-      # paste(path,"indicador_recomendaciones_fin.csv",sep=""))),
+    res<-read.csv(textConnection(getURL(
+      paste(path,"indicador_recomendaciones_fin.csv",sep=""))),
       header=T)$indicador
   }else{
     print("consultas a S3 concluidas")
@@ -149,15 +148,15 @@ indicador_recomendaciones_fin<-function(indicador){
   return(res)
 }
 
-dibujandomapa<-function(descargado){
-  if(descargado==0){
+dibujandomapa<-function(indicador){
+  if(indicador==0){
     print("generando otra vez la carga del archivo")
-    res<-tags$iframe(
-      srcdoc = paste(readLines('cosa.html'), collapse = '\n'),
-      width = "100%",
-      height = "600px")
+    res<-'cosa.html'
+  }else{
+  print("ya se descarga de s3")
+  res<-'mapa.html'
   }
-  
+  return(res)
 }
 
 # indicador_preprocbusquedas_inicio<-function(indicador){
