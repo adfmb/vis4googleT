@@ -27,7 +27,7 @@ k.key = 'indicadores/indicador_analisismails_fin.csv'
 k.set_contents_from_filename(LOCAL_PATH+'indicador_analisismails_fin.csv')
 k.make_public()
 
-k.key = 'indicadores/indicador_preprocmails.csv'
+k.key = 'indicadores/indicador_preprocmails_fin.csv'
 k.set_contents_from_filename(LOCAL_PATH+'indicador_preprocmails_fin.csv')
 k.make_public()
 
