@@ -1,26 +1,9 @@
 import boto
 from boto.s3.key import Key
-import pandas as pd
+import subprocess
 
 
-pd.DataFrame(data= [0], 
-	columns=['indicador']).to_csv('/tmp/indicador_unzip.csv', 
-	encoding='utf-8')
-pd.DataFrame(data= [0], 
-	columns=['indicador']).to_csv('/tmp/indicador_agruparbusquedas.csv', 
-	encoding='utf-8')
-pd.DataFrame(data= [0], 
-	columns=['indicador']).to_csv('/tmp/indicador_uptodosmails.csv', 
-	encoding='utf-8')
-pd.DataFrame(data= [0], 
-	columns=['indicador']).to_csv('/tmp/indicador_analisismails_fin.csv', 
-	encoding='utf-8')
-pd.DataFrame(data= [0], 
-	columns=['indicador']).to_csv('/tmp/indicador_preprocmails.csv', 
-	encoding='utf-8')
-pd.DataFrame(data= [0], 
-	columns=['indicador']).to_csv('/tmp/indicador_recomendaciones_fin.csv', 
-	encoding='utf-8')
+subprocess.Popen(['sh','../init_inds.sh'])
 
 LOCAL_PATH = '/tmp/'
 
@@ -45,7 +28,7 @@ k.set_contents_from_filename(LOCAL_PATH+'indicador_analisismails_fin.csv')
 k.make_public()
 
 k.key = 'indicadores/indicador_preprocmails.csv'
-k.set_contents_from_filename(LOCAL_PATH+'indicador_preprocmails.csv')
+k.set_contents_from_filename(LOCAL_PATH+'indicador_preprocmails_fin.csv')
 k.make_public()
 
 k.key = 'indicadores/indicador_recomendaciones_fin.csv'
