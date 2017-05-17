@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Just a Recommender System Based on Google Applications Data</title>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+  <meta name="description" content="A short description of the study driven">
+  <meta name="generator" content="bookdown 0.3 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Just a Recommender System Based on Google Applications Data" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="A short description of the study driven" />
+  <meta name="github-repo" content="ITAM-DS/" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Just a Recommender System Based on Google Applications Data" />
+  
+  <meta name="twitter:description" content="A short description of the study driven" />
+  
+
+<meta name="author" content="Alfredo, Eduardo, Alaín, Pedro V - ITAM">
+
+
+<meta name="date" content="2017-04-15">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="index.html">
+<link rel="next" href="google-takeout-data.html">
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Google Takeout</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Abstract</a></li>
+<li class="chapter" data-level="2" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>2</b> Introduction</a></li>
+<li class="chapter" data-level="3" data-path="google-takeout-data.html"><a href="google-takeout-data.html"><i class="fa fa-check"></i><b>3</b> Google Takeout Data</a><ul>
+<li class="chapter" data-level="3.1" data-path="google-takeout-data.html"><a href="google-takeout-data.html#search"><i class="fa fa-check"></i><b>3.1</b> Search</a></li>
+<li class="chapter" data-level="3.2" data-path="google-takeout-data.html"><a href="google-takeout-data.html#locations"><i class="fa fa-check"></i><b>3.2</b> Locations</a></li>
+<li class="chapter" data-level="3.3" data-path="google-takeout-data.html"><a href="google-takeout-data.html#e-mails"><i class="fa fa-check"></i><b>3.3</b> E-mails</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="google-takeout-data.html"><a href="google-takeout-data.html#pipeline"><i class="fa fa-check"></i><b>3.3.1</b> Pipeline</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html"><i class="fa fa-check"></i><b>4</b> Exploratory Data Analysis</a><ul>
+<li class="chapter" data-level="4.1" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#network-analysis"><i class="fa fa-check"></i><b>4.1</b> Network Analysis</a></li>
+<li class="chapter" data-level="4.2" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#e-mails-analysis"><i class="fa fa-check"></i><b>4.2</b> E-mails Analysis</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#plot-the-mail-traffic-by-the-day-of-the-week"><i class="fa fa-check"></i><b>4.2.1</b> Plot the mail traffic by the day of the week</a></li>
+<li class="chapter" data-level="4.2.2" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#plot-the-mail-traffic-by-the-hour-of-the-day"><i class="fa fa-check"></i><b>4.2.2</b> Plot the mail traffic by the hour of the day</a></li>
+<li class="chapter" data-level="4.2.3" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#plot-the-mail-traffic-by-the-minute-of-the-day"><i class="fa fa-check"></i><b>4.2.3</b> Plot the mail traffic by the minute of the day</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#locations-1"><i class="fa fa-check"></i><b>4.3</b> Locations</a></li>
+<li class="chapter" data-level="4.4" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#searches"><i class="fa fa-check"></i><b>4.4</b> Searches</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="building-a-recommender-system.html"><a href="building-a-recommender-system.html"><i class="fa fa-check"></i><b>5</b> Building a Recommender System</a><ul>
+<li class="chapter" data-level="5.1" data-path="building-a-recommender-system.html"><a href="building-a-recommender-system.html#modules"><i class="fa fa-check"></i><b>5.1</b> Modules</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/ITAM-DS/dpa-equipo-10/tree/master/Proyecto" target="blank">Project</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Just a Recommender System Based on Google Applications Data</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="introduction" class="section level1">
+<h1><span class="header-section-number">Chapter 2</span> Introduction</h1>
+<p>As the number of items in markets increases, the quantity of available choices also increases. Consequently, users might face loads of irrelevant data when looking for an item. This problem could be felt when users face a large number of goods which can confuse them to choose what they are looking for, that is why recommender system have achive inmerse in consumer experience. One of the main motivatons of the study is reaching the different ways a person might have inssights based on the data we permited to Google to use.</p>
+<p>First of all we have to understant the data we are using, Google Takeout is the backup service provided to you through your Google Apps Account. You have to opt-in to Public Services in order to have access to this feature. The reeader have to make sure you are logged into your Google Apps account and then navigate to your <a href="https://takeout.google.com/settings/takeout">Google Takeout</a> interface.</p>
+<p>Google Takeout was created by the Google Data Liberation Front on June 28, 2011<a href="http://dataliberation.blogspot.mx/2011/06/data-liberation-front-delivers-google.html">1</a> to allow users to export their data from most of Google’s services. Since its creation, Google has added several more services to Takeout due to popular demand from user.</p>
+<p>The user can elect to export all of the available services or choose services from the above list. Takeout (Takeaway in other languages) will then process the request and put all the files into a zip file. Takeout then optionally sends an email notification that the export is completed, at which point the user can download the archive from the downloads section of the website. The zip file contains a separate folder for each service that was selected for export.</p>
+<p>We might say, one can acces our data, but we have to be careful because of the personal data rigts, in general whether information relates to an identified or identifiable individual <a href="https://ico.org.uk/media/for-organisations/documents/1554/determining-what-is-personal-data.pdf">2</a>, this should be always clear to understand we we use onter’s data. Because privacy may be an archaic term when used in reference to depositing information online. Unlike writing a note of secrecy and keeping it safely guarded inside a vault, keeping information hidden and secure online is radically different. We live in an age where we all feel like rulers to our information, kings and queens of bank accounts, yet we are not.</p>
+<p>It is clear to scope that data is a currency, and Recommender Systems are tools capable of predicting the preferences of users over sets of items (given the historical user-preference data). Recomender systems can be found almost everywhere in the digital space (e.g. Amazon, Google, Netflix), shaping the choices we make, the products we buy, the books we read, or movies we watch. Al those are typically produce a list of recommendations in one of two ways: Through collaborative and content-based filtering or the personality-based approach.<a href="http://www.inf.unibz.it/~ricci/papers/intro-rec-sys-handbook.pdf">3</a> Collaborative filtering approaches building a model from a user’s past behavior (items previously purchased or selected and/or numerical ratings given to those items) as well as similar decisions made by other users. This model is then used to predict items (or ratings for items) that the user may have an interest in.</p>
+<p>Moreover, this always provide the users with the best available choice. In this case a recommendation model can be applied in order to help users to find what they are looking for faster and easier. In general, the model analyzes the existing data to generate the recommendation list. For this study we are going to merge the data from people on the most common Google applications. As a result, users could find what they are looking for, on their favorites places around in a shorter time and desirable a higher precision. But well we have to work on that</p>
+<p><a href="http://dataliberation.blogspot.mx/2011/06/data-liberation-front-delivers-google.html">1</a> <a href="https://ico.org.uk/media/for-organisations/documents/1554/determining-what-is-personal-data.pdf">2</a> <a href="http://www.inf.unibz.it/~ricci/papers/intro-rec-sys-handbook.pdf">3</a></p>
+
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="google-takeout-data.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
+
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/01-intro.Rmd",
+"text": "Edit"
+},
+"download": ["takeout-recommender.pdf", "takeout-recommender.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

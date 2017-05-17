@@ -13,9 +13,9 @@ shinyServer(function(input, output, session) {
     system(paste("mv ",print(input$file1$datapath)," /tmp/todo_googlet.zip",sep=""))
     system("./tasks/unzip_mv.sh")
     system("python tasks/agrupar_busquedas.py")
-    system("python tasks/ups/up_todos_mails.py")
     system("python tasks/ups/up_todas_ubicaciones.py")
     system("python tasks/ups/up_todas_busquedas.py")
+    system("python tasks/ups/up_todos_mails.py")
   })
   
   observe({ mvzip() })
@@ -73,23 +73,6 @@ shinyServer(function(input, output, session) {
     }
   })
   
-  # x10<-0
-  # progress10 <- reactive({
-  #   print(paste("antes de empezar x10 vale: ",x10,sep=""))
-  #   autoInvalidate()
-  #   if(x10==0){
-  #     
-  #     y<-indicador_analisisubicaciones_fin(x10)
-  #     x10<<-y
-  #     print(paste("Dentro del if, x10 vale: ",x10,sep=""))
-  #     print(x10)
-  #     
-  #   }else{
-  #     print(paste("Sin leer el archivo, x10 vale: ",x10,sep=""))
-  #     print(x10)
-  #   }
-  # })
-  
   x11<-0
   progress11 <- reactive({
     print(paste("antes de empezar x11 vale: ",x11,sep=""))
@@ -132,8 +115,8 @@ shinyServer(function(input, output, session) {
       while(x12==1 & descargado==0){
         print("calculando nombre de mapa")
         temp<-tempfile()
-        download.file("https://s3-us-west-2.amazonaws.com/dpaequipo10/resultado/mapapormientras.html",temp)
-        system(paste("mv ",temp," mapa.html",sep=""))
+        download.file("https://s3-us-west-2.amazonaws.com/dpaequipo10/resultado/cosa.html",temp)
+        system(paste("mv ",temp," cosa.html",sep=""))
         print(imprimemapa)
         descargado<<-1
         imprimemapa<<-dibujandomapa(x12)
@@ -142,23 +125,6 @@ shinyServer(function(input, output, session) {
     
   })
     
-    # print(paste("antes de empezar x12 vale en mapa: ",x12,sep=""))
-    # if(imprimemapa==0){
-    #   autoInvalidate()
-    #   if(descargado==0 & x12==1){
-    #   print("calculando nombre de mapa")
-    #   imprimemapa<<-dibujandomapa(x12)
-    #   descargado<<-1
-    #   print(descargado)
-    #   print(imprimemapa)
-    # }else{
-    #   # print(paste("no ejecuta ni ptm"))
-    #   # print(descargado)
-    #   imprimemapa
-    
-    # }
-  
-
   all<-reactive({progress1()+progress5()+progress8()+
       progress11()+progress12()})
   
@@ -213,172 +179,28 @@ shinyServer(function(input, output, session) {
       height = "600px")
   })
   
-  # print(paste("valor de descargado: ",descargado,sep=""))
-  # if(descargado==0){
-  #   print("descargando html")
-  #   observe({
-  #     temp<-tempfile()
-  #     download.file("https://s3-us-west-2.amazonaws.com/dpaequipo10/resultado/cosa.html",temp)
-  #     system(paste("mv ",temp," cosa.html",sep=""))
-  #     system("ls /tmp/")
-  #   })
-  #   descargado<<-1
-  # }else {print("no se vuelve a cargar ni verga")}
-  
-  # output$progressBox10 <- renderInfoBox({
-  #   infoBox(
-  #     "Progress", paste0((100*progress10()), "%"), icon = icon("list"),
-  #     color = "yellow", fill = TRUE
-  #   )
-  # })
-  
-
-  
-  # x2<-0
-  # progress2 <- reactive({
-  #   print(paste("antes de empezar x2 vale: ",x2,sep=""))
-  #   autoInvalidate()
-  #   if(x2==0){
-  #     
-  #     y<-indicador_agruparbusquedas()
-  #     x2<<-y
-  #     print(paste("Dentro del if, x2 vale: ",x2,sep=""))
-  #     print(x2)
-  #     
-  #   }else{
-  #     print(paste("Sin leer el archivo, x2 vale: ",x2,sep=""))
-  #     print(x2)
-  #   }
-  # })
-  # 
-  # x3<-0
-  # progress3 <- reactive({
-  #   print(paste("antes de empezar x3 vale: ",x3,sep=""))
-  #   autoInvalidate()
-  #   if(x3==0){
-  #     
-  #     y<-indicador_uptodasbusquedas(x3)
-  #     x3<<-y
-  #     print(paste("Dentro del if, x3 vale: ",x3,sep=""))
-  #     print(x3)
-  #     
-  #   }else{
-  #     print(paste("Sin leer el archivo, x3 vale: ",x3,sep=""))
-  #     print(x3)
-  #   }
-  # })
-  # 
-  # x4<-0
-  # progress4 <- reactive({
-  #   print(paste("antes de empezar x4 vale: ",x4,sep=""))
-  #   autoInvalidate()
-  #   if(x4==0){
-  #     
-  #     y<-indicador_uptodasubicaciones(x4)
-  #     x4<<-y
-  #     print(paste("Dentro del if, x4 vale: ",x4,sep=""))
-  #     print(x4)
-  #     
-  #   }else{
-  #     print(paste("Sin leer el archivo, x4 vale: ",x4,sep=""))
-  #     print(x4)
-  #   }
-  # })
-  
-  
-  # x6<-0
-  # progress6 <- reactive({
-  #   print(paste("antes de empezar x6 vale: ",x6,sep=""))
-  #   autoInvalidate()
-  #   if(x6==0){
-  #     
-  #     y<-indicador_preprocbusquedas_fin(x6)
-  #     x6<<-y
-  #     print(paste("Dentro del if, x6 vale: ",x6,sep=""))
-  #     print(x6)
-  #     
-  #   }else{
-  #     print(paste("Sin leer el archivo, x6 vale: ",x6,sep=""))
-  #     print(x6)
-  #   }
-  # })
-  # 
-  # x7<-0
-  # progress7 <- reactive({
-  #   print(paste("antes de empezar x7 vale: ",x7,sep=""))
-  #   autoInvalidate()
-  #   if(x7==0){
-  #     
-  #     y<-indicador_preprocubicaciones_fin(x7)
-  #     x7<<-y
-  #     print(paste("Dentro del if, x7 vale: ",x7,sep=""))
-  #     print(x7)
-  #     
-  #   }else{
-  #     print(paste("Sin leer el archivo, x7 vale: ",x7,sep=""))
-  #     print(x7)
-  #   }
-  # })
-  
-
-  
-  # x9<-0
-  # progress9 <- reactive({
-  #   print(paste("antes de empezar x9 vale: ",x9,sep=""))
-  #   autoInvalidate()
-  #   if(x9==0){
-  #     
-  #     y<-indicador_analisisbusquedas_fin(x9)
-  #     x9<<-y
-  #     print(paste("Dentro del if, x9 vale: ",x9,sep=""))
-  #     print(x9)
-  #     
-  #   }else{
-  #     print(paste("Sin leer el archivo, x9 vale: ",x9,sep=""))
-  #     print(x9)
-  #   }
-  # })
-
-  # output$progressBox2 <- renderInfoBox({
-  #   infoBox(
-  #     "Progress", paste0((100*progress2()), "%"), icon = icon("list"),
-  #     color = "purple", fill = TRUE
-  #   )
-  # })
-  # 
-  # output$progressBox3 <- renderInfoBox({
-  #   infoBox(
-  #     "Progress", paste0((100*progress3()), "%"), icon = icon("list"),
-  #     color = "purple", fill = TRUE
-  #   )
-  # })
-  # 
-  # output$progressBox4 <- renderInfoBox({
-  #   infoBox(
-  #     "Progress", paste0((100*progress4()), "%"), icon = icon("list"),
-  #     color = "purple", fill = TRUE
-  #   )
-  # })
-  
-  # output$progressBox6 <- renderInfoBox({
-  #   infoBox(
-  #     "Progress", paste0((100*progress6()), "%"), icon = icon("list"),
-  #     color = "purple", fill = TRUE
-  #   )
-  # })
-  # 
-  # output$progressBox7 <- renderInfoBox({
-  #   infoBox(
-  #     "Progress", paste0((100*progress7()), "%"), icon = icon("list"),
-  #     color = "purple", fill = TRUE
-  #   )
-  # })
-  
-  # output$progressBox9 <- renderInfoBox({
-  #   infoBox(
-  #     "Progress", paste0((100*progress9()), "%"), icon = icon("list"),
-  #     color = "purple", fill = TRUE
-  #   )
-  # })
+  output$plot<-renderPlot({
+    
+    colnames(date_counts_querys) <- c("Dia","Freq")
+    date_counts_querys$Tipo <- 'Queries'
+    
+    nrow(date_counts_mails)
+    colnames(date_counts_mails) <- c("Dia","Freq")
+    date_counts_mails$Tipo <- 'Mails'
+    
+    date_counts <- rbind(date_counts_querys, date_counts_mails)
+    
+    date_counts$Dia <- as.Date(date_counts$Dia)
+    date_counts$Year <- format(date_counts$Dia, "%Y")
+    date_counts$Month <- format(date_counts$Dia, "%b")
+    date_counts$Day <- format(date_counts$Dia, "%d")
+    date_counts$MonthDay <- format(date_counts$Dia, "%d-%b")
+    #date_counts <- date_counts_mails[date_counts$Year>=2014,]
+    
+    ggplot(data = date_counts,
+           mapping = aes(x = date_counts$Dia, y = date_counts$Freq,  shape = Tipo, colour = Tipo)) + 
+      geom_line() +  xlab("") + ylab("Frecuencia")
+    
+  })
   
 })

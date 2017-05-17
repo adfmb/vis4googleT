@@ -1,6 +1,10 @@
 library(shiny)
 library(shinydashboard)
 library(RCurl)
+library(ggplot2)
+
+date_counts_querys <- read.csv("data/date_counts_querys.csv",header=FALSE)
+date_counts_mails <- read.csv("data/date_counts_mails.csv",header=FALSE)
 
 path<-"https://s3-us-west-2.amazonaws.com/dpaequipo10/indicadores/"
 
@@ -149,57 +153,12 @@ indicador_recomendaciones_fin<-function(indicador){
 }
 
 dibujandomapa<-function(indicador){
-  if(indicador==0){
-    print("generando otra vez la carga del archivo")
-    res<-'cosa.html'
-  }else{
+  # if(indicador==0){
+  #   print("generando otra vez la carga del archivo")
+  #   res<-'cosa.html'
+  # }else{
   print("ya se descarga de s3")
   res<-'mapa.html'
-  }
+  # }
   return(res)
 }
-
-# indicador_preprocbusquedas_inicio<-function(indicador){
-#   if(indicador==0){
-#     print("generando consulta a S3")
-#     res<-read.csv(
-#       "indicadores/indicador_preprocbusquedas_inicio.csv",
-#       #   textConnection(getURL(
-#       # "https://s3-us-west-2.amazonaws.com/vis4googlet/indicador_preprocbusquedas_inicio.csv")),
-#       header=T)$indicador
-#   }else{
-#     print("consultas a S3 concluidas")
-#     res<-indicador
-#   }
-#   return(res)
-# }
-
-# indicador_preprocubicaciones_inicio<-function(indicador){
-#   if(indicador==0){
-#     print("generando consulta a S3")
-#     res<-read.csv(
-#       "indicadores/indicador_preprocubicaciones_inicio.csv",
-#       #   textConnection(getURL(
-#       # "https://s3-us-west-2.amazonaws.com/vis4googlet/indicador_preprocubicaciones_inicio.csv")),
-#       header=T)$indicador
-#   }else{
-#     print("consultas a S3 concluidas")
-#     res<-indicador
-#   }
-#   return(res)
-# }
-
-# indicador_preprocmails_inicio<-function(indicador){
-#   if(indicador==0){
-#     print("generando consulta a S3")
-#     res<-read.csv(
-#       "indicadores/indicador_preprocmails_inicio.csv",
-#       #   textConnection(getURL(
-#       # "https://s3-us-west-2.amazonaws.com/vis4googlet/indicador_preprocmails_inicio.csv")),
-#       header=T)$indicador
-#   }else{
-#     print("consultas a S3 concluidas")
-#     res<-indicador
-#   }
-#   return(res)
-# }
