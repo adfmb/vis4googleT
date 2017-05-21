@@ -2,13 +2,6 @@ import boto
 from boto.s3.key import Key
 import subprocess
 
-
-#subprocess.Popen(['sh','../init_inds.sh'])
-#subprocess.Popen(["R --no-save < ../init_inds.R"],shell=True)
-#subprocess.Popen(['sh','R CMD BATCH ../init_inds.R'])
-subprocess.Popen('R CMD BATCH ../init_inds.R', shell=True, stdout=subprocess.PIPE)
-#rm *.Rout
-
 LOCAL_PATH = '/tmp/'
 
 conn = boto.connect_s3()

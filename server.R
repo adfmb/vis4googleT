@@ -15,7 +15,7 @@ shinyServer(function(input, output, session) {
     system("python tasks/agrupar_busquedas.py")
     system("python tasks/ups/up_todas_ubicaciones.py")
     system("python tasks/ups/up_todas_busquedas.py")
-    system("python tasks/ups/up_todos_mails.py")
+    system("./tasks/ups/up_archivos_mails.sh")
   })
   
   observe({ mvzip() })

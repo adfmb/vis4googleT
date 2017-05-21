@@ -4,7 +4,7 @@ from boto.s3.key import Key
 LOCAL_PATH = '/tmp/'
 
 conn = boto.connect_s3()
-bucket = conn.get_bucket('vis4googlet')
+bucket = conn.get_bucket('dpaequipo10')
 k = Key(bucket)
 
 k.key = 'todas_busquedas.json'
