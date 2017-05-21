@@ -20,7 +20,7 @@ shinyServer(function(input, output, session) {
   
   observe({ mvzip() })
   
-  autoInvalidate <- reactiveTimer(15000)
+  autoInvalidate <- reactiveTimer(3000)
 
   x1<-0
   progress1 <- reactive({
@@ -126,8 +126,8 @@ shinyServer(function(input, output, session) {
   # imprimemapa<-'cosa.html'
   
   printmapa<-tags$iframe(
-    srcdoc = includeHTML("cosa1.html"),#paste(readLines(imprimemapa,warn=FALSE), collapse = '\n'), #mapa()
-    width = "100%",
+    srcdoc = includeHTML("www/wait4it.html"),#paste(readLines(imprimemapa,warn=FALSE), collapse = '\n'), #mapa()
+    width = "90%",
     height = "600px")
   
   descargado<-0 
@@ -136,7 +136,8 @@ mapa<-reactive({
       autoInvalidate()
       if(x12==1 & descargado==0){
         
-        descargado<-1
+        descargado<<-1
+        autoInvalidate <<- reactiveTimer(500000)
         printmapa<<-getmap()
         printmapa
         
