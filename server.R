@@ -107,21 +107,43 @@ shinyServer(function(input, output, session) {
     }
   })
   
-  descargado<-0
-  # imprimemapa<-'cosa.html'
-  mapa<-reactive({
+
+  getmap<-function(){
+    print("calculando nombre de mapa")
+    temp<-tempfile()
+    download.file("https://s3-us-west-2.amazonaws.com/dpaequipo10/resultado/mapa.html",temp)
+    system(paste("mv ",temp," mapa.html",sep=""))
+    # print(imprimemapa)
+    descargado<<-1
+    imprimemapa<-includeHTML("mapa.html")
+    # }
     
+    return(tags$iframe(
+      srcdoc = imprimemapa,#paste(readLines(imprimemapa,warn=FALSE), collapse = '\n'), #mapa()
+      width = "100%",
+      height = "600px"))
+  }
+  # imprimemapa<-'cosa.html'
+  
+  printmapa<-tags$iframe(
+    srcdoc = includeHTML("cosa1.html"),#paste(readLines(imprimemapa,warn=FALSE), collapse = '\n'), #mapa()
+    width = "100%",
+    height = "600px")
+  
+  descargado<-0 
+mapa<-reactive({
+      
       autoInvalidate()
-      while(x12==1 & descargado==0){
-        print("calculando nombre de mapa")
-        temp<-tempfile()
-        download.file("https://s3-us-west-2.amazonaws.com/dpaequipo10/resultado/cosa.html",temp)
-        system(paste("mv ",temp," cosa.html",sep=""))
-        print(imprimemapa)
-        descargado<<-1
-        imprimemapa<<-dibujandomapa(x12)
-      }
-      imprimemapa
+      if(x12==1 & descargado==0){
+        
+        descargado<-1
+        printmapa<<-getmap()
+        printmapa
+        
+      }else{
+        printmapa
+        }
+
     
   })
     
@@ -172,11 +194,11 @@ shinyServer(function(input, output, session) {
   })
   
   output$mymap <- renderUI({
-    
-    tags$iframe(
-      srcdoc = paste(readLines(mapa()), collapse = '\n'),
-      width = "100%",
-      height = "600px")
+    mapa()#getmap()
+    # tags$iframe(
+    #   srcdoc = paste(readLines(getmap()), collapse = '\n'), #mapa()
+    #   width = "100%",
+    #   height = "600px")
   })
   
   output$plot<-renderPlot({

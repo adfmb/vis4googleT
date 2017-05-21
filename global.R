@@ -142,8 +142,8 @@ indicador_analisismails_fin<-function(indicador){
 indicador_recomendaciones_fin<-function(indicador){
   if(indicador==0){
     print("generando consulta a S3")
-    res<-read.csv(textConnection(getURL(
-      paste(path,"indicador_recomendaciones_fin.csv",sep=""))),
+    res<-read.csv("indicadores/indicador_recomendaciones_fin.csv", #textConnection(getURL(
+                  # paste(path,"indicador_recomendaciones_fin.csv",sep="")))
       header=T)$indicador
   }else{
     print("consultas a S3 concluidas")

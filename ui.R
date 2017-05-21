@@ -126,17 +126,19 @@ dashboardPage(title = "Go and Google Yourself!",
                           img(src="images/pipeline.png", height = 700, width = 1200)),
 
                   tabItem(tabName = "recom",
-                          div(style = "height:500px; width:120%", includeHTML("mapa.html")),
+                          div(style = "height:500px; width:120%", htmlOutput("mymap")),#includeHTML("mymap")),#"mapa.html")),
                           style = "overflow-y:scroll;",
-                          helpText(a("mapa",
-                                     href="https://s3-us-west-2.amazonaws.com/dpaequipo10/resultado/cosa.html",
+                          box(width = 15, height = "150px", title = "Better view...",
+                              helpText(a("mapa",
+                                     href="https://s3-us-west-2.amazonaws.com/dpaequipo10/resultado/mapa.html",
                                      target="_blank")),
-                          helpText(a("luigi",
+                              helpText(a("luigi",
                                      href="http://54.186.247.137:8082/static/visualiser/index.html",
                                      target="_blank")),
-                          helpText(a("app v0.1  en aws",
+                              helpText(a("app v0.1  en aws",
                                      href="http://52.27.55.98:3838",
                                      target="_blank"))
+                          )
                           )
 
                   )
