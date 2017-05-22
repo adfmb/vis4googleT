@@ -31,3 +31,20 @@ k.make_public()
 k.key = 'indicadores/indicador_recomendaciones_fin.csv'
 k.set_contents_from_filename(LOCAL_PATH+'indicador_recomendaciones_fin.csv')
 k.make_public()
+
+#for key in bucket.list(prefix='tod'):
+#    key.delete()
+
+#for key in bucket.list(prefix='descriptivos'):
+#    key.delete()
+
+
+#for key in bucket.list(prefix='modelo'):
+#    key.delete()
+
+
+#for key in bucket.list(prefix='resultado'):
+#    key.delete()
+
+#for key in bucket.list(prefix='tmp'):
+#    key.delete()

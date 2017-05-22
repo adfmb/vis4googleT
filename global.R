@@ -3,10 +3,55 @@ library(shinydashboard)
 library(RCurl)
 library(ggplot2)
 
-date_counts_querys <- read.csv("data/date_counts_querys.csv",header=FALSE)
-date_counts_mails <- read.csv("data/date_counts_mails.csv",header=FALSE)
-
 path<-"https://s3-us-west-2.amazonaws.com/dpaequipo10/indicadores/"
+
+getmap<-function(){
+  print("calculando nombre de mapa")
+  temp<-tempfile()
+  download.file("https://s3-us-west-2.amazonaws.com/dpaequipo10/resultado/mapa.html",temp)
+  system(paste("mv ",temp," mapa.html",sep=""))
+  descargado1<<-1
+  imprimemapa<-includeHTML("mapa.html")
+  
+  return(tags$iframe(
+    srcdoc = imprimemapa,#paste(readLines(imprimemapa,warn=FALSE), collapse = '\n'), #mapa()
+    width = "100%",
+    height = "600px"))
+}
+
+get_querys<-function(){
+  descargado2<<-1
+  read.csv(textConnection(getURL("https://s3-us-west-2.amazonaws.com/dpaequipo10/descriptivos/date_counts_query.csv")),
+  header=F)
+}
+
+get_mails<-function(){
+  descargado3<<-1
+  read.csv(textConnection(getURL(
+  "https://s3-us-west-2.amazonaws.com/dpaequipo10/descriptivos/date_counts_mails.csv")),
+  header=F)
+}
+
+transform_querys_mails<-function(date_counts_querys,date_counts_mails){
+  
+  
+  colnames(date_counts_querys) <- c("Dia","Freq")
+  date_counts_querys$Tipo <- 'Queries'
+  
+  colnames(date_counts_mails) <- c("Dia","Freq")
+  date_counts_mails$Tipo <- 'Mails'
+  
+  date_counts <- rbind(date_counts_querys, date_counts_mails)
+  
+  date_counts$Dia <- as.Date(date_counts$Dia)
+  date_counts$Year <- format(date_counts$Dia, "%Y")
+  date_counts$Month <- format(date_counts$Dia, "%b")
+  date_counts$Day <- format(date_counts$Dia, "%d")
+  date_counts$MonthDay <- format(date_counts$Dia, "%d-%b")
+  
+  return(date_counts)
+  
+}
 
 indicador_unzip<-function(){
   if(file.exists("/tmp/todo_googlet.zip")){
@@ -153,6 +198,7 @@ indicador_recomendaciones_fin<-function(indicador){
 }
 
 dibujandomapa<-function(indicador){
+  
   # if(indicador==0){
   #   print("generando otra vez la carga del archivo")
   #   res<-'cosa.html'
@@ -161,4 +207,5 @@ dibujandomapa<-function(indicador){
   res<-'mapa.html'
   # }
   return(res)
-}
+
+  }

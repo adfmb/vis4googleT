@@ -10,6 +10,8 @@ shinyServer(function(input, output, session) {
   
   
   mvzip<-eventReactive(input$file1,{
+    
+    system("./tasks/reset_all.sh")
     system(paste("mv ",print(input$file1$datapath)," /tmp/todo_googlet.zip",sep=""))
     system("./tasks/unzip_mv.sh")
     system("python tasks/agrupar_busquedas.py")
@@ -20,7 +22,9 @@ shinyServer(function(input, output, session) {
   
   observe({ mvzip() })
   
-  autoInvalidate <- reactiveTimer(3000)
+  autoInvalidate <- reactiveTimer(10000)
+  autoInvalidate_querys<-reactiveTimer(10000)
+  autoInvalidate_mails<-reactiveTimer(10000)
 
   x1<-0
   progress1 <- reactive({
@@ -107,36 +111,19 @@ shinyServer(function(input, output, session) {
     }
   })
   
-
-  getmap<-function(){
-    print("calculando nombre de mapa")
-    temp<-tempfile()
-    download.file("https://s3-us-west-2.amazonaws.com/dpaequipo10/resultado/mapa.html",temp)
-    system(paste("mv ",temp," mapa.html",sep=""))
-    # print(imprimemapa)
-    descargado<<-1
-    imprimemapa<-includeHTML("mapa.html")
-    # }
-    
-    return(tags$iframe(
-      srcdoc = imprimemapa,#paste(readLines(imprimemapa,warn=FALSE), collapse = '\n'), #mapa()
-      width = "100%",
-      height = "600px"))
-  }
-  # imprimemapa<-'cosa.html'
   
   printmapa<-tags$iframe(
-    srcdoc = includeHTML("www/wait4it.html"),#paste(readLines(imprimemapa,warn=FALSE), collapse = '\n'), #mapa()
-    width = "90%",
-    height = "600px")
+      srcdoc = includeHTML("www/wait4it.html"),#paste(readLines(imprimemapa,warn=FALSE), collapse = '\n'), #mapa()
+      width = "90%",
+      height = "600px")
   
-  descargado<-0 
-mapa<-reactive({
+  descargado1<-0 
+  mapa<-reactive({
       
       autoInvalidate()
-      if(x12==1 & descargado==0){
+      if(x12==1 & descargado1==0){
         
-        descargado<<-1
+        descargado1<<-1
         autoInvalidate <<- reactiveTimer(500000)
         printmapa<<-getmap()
         printmapa
@@ -147,7 +134,47 @@ mapa<-reactive({
 
     
   })
+  
+  printquerys<-read.csv("data/waiting4_querys.csv",header=FALSE)
+  descargado2<-0
+  date_counts_querys<-reactive({
+    autoInvalidate_querys()
+    if(x12==1 & descargado2==0){
+      
+      descargado2<<-1
+      autoInvalidate_querys <<- reactiveTimer(500000)
+      printquerys<<-get_querys()
+      printquerys
+      
+    }else{
+      printquerys
+    }
+  })
+
+  printmails<-read.csv("data/waiting4_mails.csv",header=FALSE)
+  descargado3<-0
+  date_counts_mails<-reactive({
+    autoInvalidate_mails()
+    if(x12==1 & descargado3==0){
+      
+      descargado3<<-1
+      autoInvalidate_mails <<- reactiveTimer(500000)
+      printmails<<-get_mails()
+      printmails
+      
+    }else{
+      printmails
+    }
+  })
+  
+  
+  date_counts<-reactive({
     
+    transform_querys_mails(date_counts_querys(),date_counts_mails())
+    
+  })
+  
+  
   all<-reactive({progress1()+progress5()+progress8()+
       progress11()+progress12()})
   
@@ -204,24 +231,11 @@ mapa<-reactive({
   
   output$plot<-renderPlot({
     
-    colnames(date_counts_querys) <- c("Dia","Freq")
-    date_counts_querys$Tipo <- 'Queries'
     
-    nrow(date_counts_mails)
-    colnames(date_counts_mails) <- c("Dia","Freq")
-    date_counts_mails$Tipo <- 'Mails'
-    
-    date_counts <- rbind(date_counts_querys, date_counts_mails)
-    
-    date_counts$Dia <- as.Date(date_counts$Dia)
-    date_counts$Year <- format(date_counts$Dia, "%Y")
-    date_counts$Month <- format(date_counts$Dia, "%b")
-    date_counts$Day <- format(date_counts$Dia, "%d")
-    date_counts$MonthDay <- format(date_counts$Dia, "%d-%b")
     #date_counts <- date_counts_mails[date_counts$Year>=2014,]
     
-    ggplot(data = date_counts,
-           mapping = aes(x = date_counts$Dia, y = date_counts$Freq,  shape = Tipo, colour = Tipo)) + 
+    ggplot(data = date_counts(),
+           mapping = aes(x = date_counts()$Dia, y = date_counts()$Freq,  shape = Tipo, colour = Tipo)) + 
       geom_line() +  xlab("") + ylab("Frecuencia")
     
   })
