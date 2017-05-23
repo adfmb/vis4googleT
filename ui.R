@@ -1,5 +1,7 @@
 library(shiny)
 library(shinydashboard)
+# library(shinyjs)
+jsResetCode <- "shinyjs.reset = function() {history.go(0)}"
 
 dashboardPage(title = "Go and Google Yourself!",
               skin = ("blue"),
@@ -61,7 +63,7 @@ dashboardPage(title = "Go and Google Yourself!",
                   sidebarUserPanel(name = a("Eduardo M", target = "_blank_",
                                             href = "https://github.com/eduardomtz"), 
                                    subtitle = "Computer Scientist",
-                                   image = "images/lal.png"),
+                                   image = "images/lal02.png"),
                   sidebarUserPanel(name = a("Alain C", target = "_blank_",
                                             href = "https://github.com/acabrerag"), 
                                    subtitle = "Data Scientist",
@@ -116,6 +118,10 @@ dashboardPage(title = "Go and Google Yourself!",
                               valueBoxOutput("progressBox11",width = 6)),
                           box(width = 6, height = "150px", title = "Recommender",
                               valueBoxOutput("progressBox12",width = 6))),
+                          # box( width = 6, height = "150px", title = "Shutdown",
+                          #      useShinyjs(),                                           # Include shinyjs in the UI
+                          #      extendShinyjs(text = jsResetCode),                      # Add the js code to the page
+                          #      actionButton("reset_button", "Reset Page"))),
                   
                   tabItem(tabName = "analysis",
                           style = "overflow-y:scroll;",

@@ -1,8 +1,8 @@
-import os
 import json
 import subprocess
 import codecs
 import glob
+#import os
 
 LOCAL_PATH = '/tmp/'
 

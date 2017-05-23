@@ -1,0 +1,8 @@
+#os
+#json
+#subprocess.run
+#codecs
+glob2
+boto
+#pandas
+

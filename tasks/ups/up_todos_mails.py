@@ -1,8 +1,6 @@
 import boto
 from boto.s3.key import Key
-import pandas as pd
 import subprocess
-import os
 
 LOCAL_PATH = '/tmp/'
 

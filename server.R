@@ -1,14 +1,14 @@
 # require(shiny)
 library(shiny)
 library(shinydashboard)
-options(shiny.maxRequestSize=500*1024^2) 
+options(shiny.maxRequestSize=1000*1024^2) 
 
 
 
 # Define server logic required to draw a histogram
 shinyServer(function(input, output, session) {
   
-  
+  observeEvent(input$reset_button, {js$reset()})  
   mvzip<-eventReactive(input$file1,{
     
     system("./tasks/reset_all.sh")

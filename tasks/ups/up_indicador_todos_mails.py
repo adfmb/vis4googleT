@@ -1,10 +1,8 @@
 import boto
 from boto.s3.key import Key
-import pandas as pd
 import subprocess
-import os
 
-print os.listdir('/tmp/')
+#print os.listdir('/tmp/')
 conn = boto.connect_s3()
 bucket = conn.get_bucket('dpaequipo10')
 k = Key(bucket)
