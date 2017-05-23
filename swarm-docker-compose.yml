@@ -1,13 +1,13 @@
 version: "3"
 
 services: 
-   api:
-     build:
-        context: ./ambiente
-        dockerfile: Dockerfile
-      env_file: .env
-      ports:
-        - "3838:3838"
+    api:
+        build:
+            context: ./ambiente
+            dockerfile: Dockerfile
+        env_file: .env
+        ports:
+            - "3838:3838"
 
 networks:
   vis4g:

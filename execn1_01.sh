@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#mv execn1_01.sh/_env .env
+mv _env .env
 
 sudo curl -L \
 https://github.com/docker/compose/releases/download/1.10.0/docker-compose-$(uname -s)-$(uname -m) \
