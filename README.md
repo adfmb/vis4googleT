@@ -1,7 +1,10 @@
 # vis4googleT
+
+================================================================================
+
 Visualizing your Googles' localizations, searches and mails
 
-===========
+
 
 1. En el archivo *ambiente/vamb.sh* ingresar las credenciales de:
     +   AWS_ACCESS_KEY_ID
