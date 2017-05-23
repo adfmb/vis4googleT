@@ -13,3 +13,4 @@ sudo chmod +x /usr/local/bin/docker-compose
 
 docker swarm init
 
+docker-compose build api
