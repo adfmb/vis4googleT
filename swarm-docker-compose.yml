@@ -5,7 +5,7 @@ services:
      build:
         context: ./ambiente
         dockerfile: Dockerfile
-      #env_file: .env
+      env_file: .env
       ports:
         - "3838:3838"
 

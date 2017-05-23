@@ -6,15 +6,15 @@ ENV REFRESHED_AT 2017-045-21
 
 RUN apt-get update
 
-RUN apt-get install python
+RUN apt-get -y install python
 
-RUN apt-get install python-pip
+RUN apt-get -y install python-pip
 
-# RUN apt-get install git-core
+# RUN apt-get -y install git-core
 # git clone https://github.com/adfmb/vis4googleT.git
-# RUN apt-get install nano
+# RUN apt-get -y install nano
 
-ADD ../vamb.sh /tmp/vamb.sh 
+ADD vamb.sh /tmp/vamb.sh 
 RUN . ./tmp/vamb.sh 
 
 
@@ -43,13 +43,13 @@ RUN wget --no-verbose https://s3.amazonaws.com/rstudio-shiny-server-os-build/ubu
     gdebi -n ss-latest.deb && \
     rm -f version.txt ss-latest.deb
 
-RUN apt-get install libcurl4-openssl-dev
+RUN apt-get install -y libcurl4-openssl-dev
 
 
 RUN R -e "install.packages(c('shiny','shinydashboard','RCurl','ggplot2','rmarkdown'), repos='http://cran.rstudio.com/')"
 
 COPY shiny-server.conf  /etc/shiny-server/shiny-server.conf
-COPY ../app /srv/shiny-server/
+COPY /app /srv/shiny-server/
 
 EXPOSE 3838
 
