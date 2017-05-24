@@ -1,5 +1,0 @@
-Flask
-flask_httpauth
-psycopg2
-flask_cloudy
-#py2neo
