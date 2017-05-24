@@ -11,7 +11,7 @@ aws ec2 authorize-security-group-ingress --group-name docker-machine --protocol 
 docker info | grep ^Name
 
 docker-machine ssh awsn00 git clone https://github.com/adfmb/vis4googleT.git
-docker-machine scp -r ambiente/vamb.sh awsn00:/home/ubuntu/vis4googleT/ambiente/vamb.sh
+docker-machine scp -r ambiente/vamb.sh awsn00:/home/ubuntu/vis4googleT/ambiente/app/vamb.sh
 docker-machine ssh awsn00 chmod u+x vis4googleT/execn1_01.sh
 docker-machine ssh awsn00 ./vis4googleT/execn1_01.sh #Este script termina con el swarm inicializado
 

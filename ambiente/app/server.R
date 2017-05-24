@@ -10,7 +10,7 @@ shinyServer(function(input, output, session) {
   
   observeEvent(input$reset_button, {js$reset()})  
   mvzip<-eventReactive(input$file1,{
-    
+
     system("./tasks/reset_all.sh")
     system(paste("mv ",print(input$file1$datapath)," /tmp/todo_googlet.zip",sep=""))
     system("./tasks/unzip_mv.sh")

@@ -14,8 +14,6 @@ RUN apt-get -y install python-pip
 # git clone https://github.com/adfmb/vis4googleT.git
 # RUN apt-get -y install nano
 
-ADD vamb.sh /tmp/vamb.sh
-
 
 ## Requerimientos
 ADD requirements.txt /tmp/requirements.txt
