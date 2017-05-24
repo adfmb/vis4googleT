@@ -103,7 +103,9 @@ dashboardPage(title = "Go and Google Yourself!",
                   
                   tabItem(tabName = "datafile",
                           style = "overflow-y:scroll;",
-                          box(width = 12, height = "100px", #title = "User Inputs",
+                          box(width = 12, height = "130px", #title = "User Inputs",
+                              actionButton("awsc", "Active yours credentials"),
+                              
                               fileInput('file1', "Choose your .zip file with your Google's locations, serches and mails",
                                         accept = c('.zip'))),
                           box(width = 12, height = "150px",
@@ -117,7 +119,9 @@ dashboardPage(title = "Go and Google Yourself!",
                           box(width = 6, height = "150px", title = "Analysis done",#mails",
                               valueBoxOutput("progressBox11",width = 6)),
                           box(width = 6, height = "150px", title = "Recommender",
-                              valueBoxOutput("progressBox12",width = 6))),
+                              valueBoxOutput("progressBox12",width = 6)),
+                          box(width = 6, height = "150px", title = "Have fun one more time",
+                              actionButton("go", "Reset All"))),
                           # box( width = 6, height = "150px", title = "Shutdown",
                           #      useShinyjs(),                                           # Include shinyjs in the UI
                           #      extendShinyjs(text = jsResetCode),                      # Add the js code to the page

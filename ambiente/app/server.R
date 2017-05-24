@@ -8,7 +8,24 @@ options(shiny.maxRequestSize=1000*1024^2)
 # Define server logic required to draw a histogram
 shinyServer(function(input, output, session) {
   
-  observeEvent(input$reset_button, {js$reset()})  
+  #observe(system(". ./vamb.sh"))
+  # observeEvent(input$reset_button, {js$reset()})  
+  activeawsc<-eventReactive(input$awsc,{
+    
+    system(". ./vamb.sh")
+    
+  })
+  
+  observe({ activeawsc() })
+    
+  reset<-eventReactive(input$go,{
+  
+      system("./tasks/reset_all.sh")
+  
+    })
+  
+  observe({ reset() })
+  
   mvzip<-eventReactive(input$file1,{
 
     system("./tasks/reset_all.sh")
