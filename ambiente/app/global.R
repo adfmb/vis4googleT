@@ -5,7 +5,7 @@ library(ggplot2)
 
 path<-"https://s3-us-west-2.amazonaws.com/dpaequipo10/indicadores/"
 
-system(". ./vamb.sh")
+#system(". ./vamb.sh")
 
 getmap<-function(){
   print("calculando nombre de mapa")

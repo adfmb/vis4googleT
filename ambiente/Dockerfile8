@@ -1,0 +1,11 @@
+FROM vis4googlet_api
+
+MAINTAINER Alfredo Méndez <actuario.alfredo.mb@gmail.com>
+
+ENV REFRESHED_AT 2017-045-24
+
+COPY /app /srv/shiny-server/
+
+EXPOSE 3838
+
+CMD ["/usr/bin/shiny-server.sh"]

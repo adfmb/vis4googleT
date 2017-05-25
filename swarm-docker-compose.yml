@@ -1,8 +1,9 @@
 version: "3"
 
 services: 
-   api:
-     image: vis4googlet_api
+
+   api8:
+     image: vis4googlet_api8
      env_file: vis4googleT/.env
      ports:
         - "3838:3838"

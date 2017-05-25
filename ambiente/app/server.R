@@ -10,13 +10,13 @@ shinyServer(function(input, output, session) {
   
   #observe(system(". ./vamb.sh"))
   # observeEvent(input$reset_button, {js$reset()})  
-  activeawsc<-eventReactive(input$awsc,{
-    
-    system(". ./vamb.sh")
-    
-  })
-  
-  observe({ activeawsc() })
+  # activeawsc<-eventReactive(input$awsc,{
+  #   
+  #   system(". ./vamb.sh")
+  #   
+  # })
+  # 
+  # observe({ activeawsc() })
     
   reset<-eventReactive(input$go,{
   

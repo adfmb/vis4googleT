@@ -1,0 +1,14 @@
+FROM vis4googlet_api
+
+MAINTAINER Alfredo Méndez <actuario.alfredo.mb@gmail.com>
+
+ENV REFRESHED_AT 2017-045-24
+
+RUN mkdir /tasks
+ADD app/tasks /tasks/
+ADD vamb.sh /
+
+
+EXPOSE 3838
+
+CMD ["/usr/bin/shiny-server.sh"]
