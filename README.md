@@ -6,7 +6,7 @@ Visualizing your Googles' localizations, searches and mails
 
 
 
-1. En el archivo *ambiente/vamb.sh* ingresar las credenciales de:
+1. En el archivo *vamb.sh* ingresar las credenciales de:
     +   AWS_ACCESS_KEY_ID
     +   AWS_SECRET_ACCESS_KEY
     
