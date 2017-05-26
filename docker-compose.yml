@@ -1,10 +1,10 @@
 version: "3"
 
 services:  
-   api8:
+   api:
     build:
        context: ./ambiente
-       dockerfile: Dockerfile8
+       dockerfile: Dockerfile
     env_file: .env
     ports:
       - "3838:3838"

@@ -2,9 +2,9 @@ version: "3"
 
 services: 
 
-   api8:
-     image: vis4googlet_api8
-     env_file: vis4googleT/.env
+   api:
+     image: vis4googlet_api
+     env_file: .env
      ports:
         - "3838:3838"
      networks:

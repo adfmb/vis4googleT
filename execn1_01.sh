@@ -1,6 +1,6 @@
 #!/bin/bash
 
-mv _env .env
+mv vis4googlet/_env vis4googlet/.env
 
 sudo curl -L \
 https://github.com/docker/compose/releases/download/1.10.0/docker-compose-$(uname -s)-$(uname -m) \
@@ -13,4 +13,4 @@ sudo chmod +x /usr/local/bin/docker-compose
 
 docker swarm init
 
-docker-compose build api
+docker-compose -f vis4googleT/docker-compose.yml build api

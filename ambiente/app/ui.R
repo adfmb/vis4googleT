@@ -1,7 +1,7 @@
 library(shiny)
 library(shinydashboard)
 # library(shinyjs)
-jsResetCode <- "shinyjs.reset = function() {history.go(0)}"
+# jsResetCode <- "shinyjs.reset = function() {history.go(0)}"
 
 dashboardPage(title = "Go and Google Yourself!",
               skin = ("blue"),
