@@ -145,7 +145,7 @@ dashboardPage(title = "Go and Google Yourself!",
                               helpText(a("luigi",
                                      href="http://54.186.247.137:8082/static/visualiser/index.html",
                                      target="_blank")),
-                              helpText(a("app v0.1  en aws",
+                              helpText(a("versión beta (exposición) en aws",
                                      href="http://52.27.55.98:3838",
                                      target="_blank"))
                           )
